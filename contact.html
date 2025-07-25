@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact - Projet Logement</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- En-tête -->
+    <header class="main-header">
+        <a href="index.html" class="logo">
+            <img src="logo.png" alt="Logo de l'entreprise">
+        </a>
+        <nav class="main-nav">
+            <ul>
+                <li><a href="index.html">Accueil</a></li>
+                <li><a href="a-vendre.html">À Vendre</a></li>
+                <li><a href="louyer.html">À Louer</a></li>
+                <li><a href="colocation.html">Colocation</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="service.html">Service</a></li>
+            </ul>
+        </nav>
+        <div class="header-actions">
+            <a href="inscription.html">Inscription</a>
+        </div>
+    </header>
+
+    <main>
+        <h1 class="page-title">Contactez-nous</h1>
+        <p class="page-intro">
+            Une question ? Une demande de visite ? N'hésitez pas à nous écrire. Notre équipe vous répondra dans les plus brefs délais.
+        </p>
+
+        <div class="contact-wrapper">
+            <!-- Section Formulaire -->
+            <div class="contact-form-section">
+                <div class="form-container">
+                    <form action="/contact-handler" method="POST">
+                        <div class="form-group">
+                            <label for="name">Nom complet</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Adresse Email</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="subject">Sujet</label>
+                            <input type="text" id="subject" name="subject" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Votre message</label>
+                            <textarea id="message" name="message" required></textarea>
+                        </div>
+                        <button type="submit" class="form-btn">Envoyer le message</button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Section Informations de contact -->
+            <div class="contact-info-section">
+                <h3>Nos Coordonnées</h3>
+                <address>
+                    <ul>
+                        <li>
+                            <span class="icon" aria-hidden="true">📍</span>
+                            <span>Kipé, Centre Emetteur<br>Conakry, Guinée</span>
+                        </li>
+                        <li>
+                            <span class="icon" aria-hidden="true">📞</span>
+                            <a href="tel:+224620000000">+224 620 00 00 00</a>
+                        </li>
+                        <li>
+                            <span class="icon" aria-hidden="true">✉️</span>
+                            <a href="mailto:contact@logement.com">contact@logement.com</a>
+                        </li>
+                    </ul>
+                </address>
+            </div>
+        </div>
+
+        <!-- Section Carte -->
+        <div class="map-container">
+            <iframe 
+                title="Carte de localisation de nos bureaux"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3934.303623918347!2d-13.65290568520935!3d9.57148899313493!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xf1cd28c3c25c33f%3A0x941a513d7826f14!2sKip%C3%A9%20Centre%20Emetteur!5e0!3m2!1sfr!2s!4v1672854321098!5m2!1sfr!2s"
+                allowfullscreen="" 
+                loading="lazy" 
+                referrerpolicy="no-referrer-when-downgrade">
+            </iframe>
+        </div>
+    </main>
+
+    <!-- Pied de page -->
+    <footer class="main-footer">
+        <div class="footer-content">
+            <div class="footer-section about">
+                <h4>À Propos de Nous</h4>
+                <p>Votre partenaire de confiance pour trouver la maison de vos rêves. Nous offrons un service personnalisé pour l'achat, la vente et la location de biens immobiliers.</p>
+            </div>
+            <div class="footer-section links">
+                <h4>Liens Rapides</h4>
+                <ul>
+                    <li><a href="index.html">Accueil</a></li>
+                    <li><a href="a-vendre.html">À Vendre</a></li>
+                    <li><a href="louyer.html">À Louer</a></li>
+                    <li><a href="colocation.html">Colocation</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="service.html">Service</a></li>
+                </ul>
+            </div>
+            <div class="footer-section contact-social">
+                <h4>Contact & Réseaux</h4>
+                <ul class="contact-info">
+                    <li>Email: contact@logement.com</li>
+                    <li>Téléphone: +224 620 00 00 00</li>
+                </ul>
+                <div class="social-links">
+                    <a href="#" target="_blank">Facebook</a>
+                    <a href="#" target="_blank">Twitter</a>
+                    <a href="#" target="_blank">TikTok</a>
+                    <a href="#" target="_blank">WhatsApp</a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            &copy; 2024 Projet Logement | Tous droits réservés
+        </div>
+    </footer>
+</body>
+</html>

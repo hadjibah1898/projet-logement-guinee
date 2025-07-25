@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Connexion - Projet Logement</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- On réutilise le même en-tête pour la cohérence -->
+    <header class="main-header">
+        <a href="index.html" class="logo">
+            <img src="logo.png" alt="Logo de l'entreprise">
+        </a>
+        <nav class="main-nav">
+            <ul>
+                <li><a href="index.html">Accueil</a></li>
+                <li><a href="a-vendre.html">À Vendre</a></li>
+                <li><a href="louyer.html">À Louer</a></li>
+                <li><a href="colocation.html">Colocation</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="service.html">Service</a></li>
+            </ul>
+        </nav>
+        <div class="header-actions">
+            <a href="inscription.html">Inscription</a>
+        </div>
+    </header>
+
+    <main>
+        <div class="form-container">
+            <h1>Connexion</h1>
+            <form action="/login-handler" method="POST">
+                <div class="form-group">
+                    <label for="email">Adresse Email</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Mot de passe</label>
+                    <input type="password" id="password" name="password" required>
+                </div>
+                <button type="submit" class="form-btn">Se connecter</button>
+            </form>
+            <div class="form-links">
+                <a href="#">Mot de passe oublié ?</a>
+                <span class="separator">|</span>
+                <a href="inscription.html">Pas encore de compte ? S'inscrire</a>
+            </div>
+        </div>
+    </main>
+
+</body>
+</html>

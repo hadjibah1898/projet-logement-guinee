@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Accueil - Projet Logement</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header class="main-header">
+        <a href="index.html" class="logo">
+            <img src="logo.png" alt="Logo de l'entreprise">
+        </a>
+        <nav class="main-nav">
+            <ul>
+                <li><a href="index.html">Accueil</a></li>
+                <li><a href="a-vendre.html">À Vendre</a></li>
+                <li><a href="louyer.html">À Louer</a></li>
+                <li><a href="colocation.html">Colocation</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="service.html">Service</a></li>
+            </ul>
+        </nav>
+        <div class="header-actions">
+            <a href="inscription.html">Inscription</a>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="hero-content">
+                <h1>Trouvez le logement de vos rêves</h1>
+                <p>La recherche la plus simple pour louer, acheter ou trouver une colocation.</p>
+                <div class="search-form-container">
+                    <form action="/search-handler" method="GET" class="advanced-search-form" role="search">
+                        <div class="form-group">
+                            <label for="location">Localisation:</label>
+                            <input type="text" id="location" name="location" placeholder="Ville, quartier..." aria-label="Localisation">
+                        </div>
+                        <div class="form-group">
+                            <label for="property-type">Type de bien:</label>
+                            <select id="property-type" name="property_type" aria-label="Type de bien">
+                                <option value="">Tous types</option>
+                                <option value="appartement">Appartement</option>
+                                <option value="maison">Maison</option>
+                                <option value="villa">Villa</option>
+                                <option value="studio">Studio</option>
+                            </select>
+                        </div> 
+                        <div class="form-group price-group">
+                            <label>Prix (GNF):</label>
+                            <div class="min-max-inputs">
+                                <input type="number" name="min_price" placeholder="Min" aria-label="Prix minimum">
+                                <input type="number" name="max_price" placeholder="Max" aria-label="Prix maximum">
+                            </div>
+                        </div>
+                        <div class="form-group surface-group">
+                            <label>Surface (m²):</label>
+                            <div class="min-max-inputs">
+
+                                <input type="number" name="min_surface" placeholder="Min">
+                                <input type="number" name="max_surface" placeholder="Max">
+                            </div>
+                        </div>
+                        <button type="submit" class="search-btn">Rechercher</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <section class="students-incentives">
+            <div class="container">
+                <h2 class="section-title">Étudiants, trouvez votre logement idéal près de votre université !</h2>
+                <p>Vous êtes nouvellement orienté par une université publique guinéenne ? Logement vous accompagne dans votre recherche de logement étudiant ou de colocation, près de votre campus. Simplifiez votre installation et concentrez-vous sur vos études !</p>
+                <img src="etudiants.jpg" alt="Étudiants cherchant un logement" style="width: 100%; max-width: 400px; margin: 20px auto; display: block;">
+                <ul>
+                    <li><i class="fas fa-check-circle"></i> Annonces proches des universités guinéennes</li>
+                    <li><i class="fas fa-check-circle"></i> Colocations étudiantes vérifiées</li>
+                    <li><i class="fas fa-check-circle"></i> Options pour tous les budgets</li>
+                    <li><i class="fas fa-check-circle"></i> Assistance personnalisée pour votre recherche</li>
+                    <li><i class="fas fa-check-circle"></i> Conseils et guides pour faciliter votre installation</li>
+                </ul>
+                <a href="inscription.html" class="cta-button">Rejoignez la communauté étudiante</a>
+            </div>
+        </section>
+
+
+
+
+
+        <section class="featured-listings">
+            <h2 class="section-title">Nos annonces à la une</h2>
+            <div class="listings-container">
+                <!-- Annonce 1: À Vendre -->
+                <div class="property-card">
+                    <img src="https://via.placeholder.com/400x250/cccccc/808080?text=Villa+de+Luxe" alt="Villa de luxe avec vue panoramique">
+                    <div class="property-details">
+                        <h3>Villa de luxe avec vue panoramique</h3>
+                        <p class="property-location">Bordeaux, 33000</p>
+                        <ul class="property-features">
+                            <li>7 Pièces</li>
+                            <li>250 m²</li>
+                        </ul>
+                        <p class="property-price">7 905 000 000 GNF</p>
+                    </div>
+                    <a href="a-vendre.html" class="details-btn">Voir les détails</a>
+                </div>
+
+                <!-- Annonce 2: À Louer -->
+                <div class="property-card">
+                    <img src="https://via.placeholder.com/400x250/cccccc/808080?text=Appartement+Centre-Ville" alt="Appartement lumineux en centre-ville">
+                    <div class="property-details">
+                        <h3>Appartement lumineux en centre-ville</h3>
+                        <p class="property-location">Conakry, Kaloum</p>
+                        <ul class="property-features">
+                            <li>2 Pièces</li>
+                            <li>55 m²</li>
+                        </ul>
+                        <p class="property-price">13 950 000 GNF <span>/ mois</span></p>
+                    </div>
+                    <a href="louyer.html" class="details-btn">Voir les détails</a>
+                </div>
+
+                <!-- Annonce 3: Colocation -->
+                <div class="property-card">
+                    <img src="https://via.placeholder.com/400x250/cccccc/808080?text=Chambre+en+Colocation" alt="Chambre dans un grand appartement">
+                    <div class="property-details">
+                        <h3>Chambre meublée dans grand T4</h3>
+                        <p class="property-location">Conakry, Kipé</p>
+                        <ul class="property-features">
+                            <li>3 Colocataires</li>
+                            <li>15 m² (chambre)</li>
+                        </ul>
+                        <p class="property-price">2 500 000 GNF <span>/ mois</span></p>
+                    </div>
+                    <a href="colocation.html" class="details-btn">Voir les détails</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="main-footer">
+        <div class="footer-content">
+            <div class="footer-section about">
+                <h4>À Propos de Nous</h4>
+                <p>Votre partenaire de confiance pour trouver la maison de vos rêves. Nous offrons un service personnalisé pour l'achat, la vente et la location de biens immobiliers.</p>
+            </div>
+            <div class="footer-section links">
+                <h4>Liens Rapides</h4>
+                <ul>
+                    <li><a href="index.html">Accueil</a></li>
+                    <li><a href="a-vendre.html">À Vendre</a></li>
+                    <li><a href="louyer.html">À Louer</a></li>
+                    <li><a href="colocation.html">Colocation</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="service.html">Service</a></li>
+                </ul>
+            </div>
+            <div class="footer-section contact-social">
+                <h4>Contact & Réseaux</h4>
+                <ul class="contact-info">
+                    <li>Email: contact@logement.com</li>
+                    <li>Téléphone: +33 1 23 45 67 89</li>
+                </ul>
+                <div class="social-links">
+                    <a href="#" target="_blank">Facebook</a>
+                    <a href="#" target="_blank">Twitter</a>
+                    <a href="#" target="_blank">TikTok</a>
+                    <a href="#" target="_blank">WhatsApp</a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            &copy; 2024 Projet Logement | Tous droits réservés
+        </div>
+    </footer>
+
+    <!-- Chatbot -->
+    <div id="chatbot-toggle">
+        <span class="icon">💬</span>
+    </div>
+
+    <div id="chatbot-window" class="hidden">
+        <div class="chatbot-header">
+            <h3>Assistant Virtuel</h3>
+            <button id="close-chatbot">&times;</button>
+        </div>
+        <div id="chatbot-messages">
+            <div class="message bot-message">
+                <p>Bonjour ! Comment puis-je vous aider aujourd'hui ?</p>
+            </div>
+        </div>
+        <div id="chatbot-input">
+            <p>Questions fréquentes :</p>
+            <button class="quick-reply">Quels sont vos services ?</button>
+            <button class="quick-reply">Comment puis-je publier une annonce ?</button>
+            <button class="quick-reply">Comment vous contacter ?</button>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const chatbotToggle = document.getElementById('chatbot-toggle');
+            const chatbotWindow = document.getElementById('chatbot-window');
+            const closeChatbot = document.getElementById('close-chatbot');
+            const messagesContainer = document.getElementById('chatbot-messages');
+            const quickReplyContainer = document.getElementById('chatbot-input');
+
+            const responses = {
+                "Quels sont vos services ?": "Nous proposons l'estimation de biens, l'accompagnement pour l'achat et la vente, la gestion locative, et bien plus. Consultez notre page 'Service' pour tous les détails !",
+                "Comment puis-je publier une annonce ?": "Pour publier une annonce, vous devez d'abord créer un compte via la page d'inscription. Une fois connecté, vous aurez accès à votre espace personnel pour gérer vos publications.",
+                "Comment vous contacter ?": "Vous pouvez nous joindre via le formulaire sur notre page 'Contact', par email à contact@logement.com ou par téléphone au +224 620 00 00 00."
+            };
+
+            // Ouvre/ferme le chatbot
+            chatbotToggle.addEventListener('click', () => chatbotWindow.classList.toggle('hidden'));
+            closeChatbot.addEventListener('click', () => chatbotWindow.classList.add('hidden'));
+
+            // Gère les clics sur les questions rapides
+            quickReplyContainer.addEventListener('click', (e) => {
+                if (e.target.classList.contains('quick-reply')) {
+                    const userQuestion = e.target.textContent;
+                    addMessage(userQuestion, 'user-message');
+
+                    // Simule une réponse du bot
+                    setTimeout(() => {
+                        const botResponse = responses[userQuestion] || "Je ne suis pas sûr de comprendre. Pouvez-vous reformuler ?";
+                        addMessage(botResponse, 'bot-message');
+                    }, 1000);
+                }
+            });
+
+            function addMessage(text, type) {
+                const messageWrapper = document.createElement('div');
+                messageWrapper.className = `message ${type}`;
+                
+                const messageP = document.createElement('p');
+                messageP.textContent = text;
+
+                messageWrapper.appendChild(messageP);
+                messagesContainer.appendChild(messageWrapper);
+                
+                // Fait défiler vers le bas pour voir le dernier message
+                messagesContainer.scrollTop = messagesContainer.scrollHeight;
+            }
+        });
+    </script>
+</body>
+</html>
