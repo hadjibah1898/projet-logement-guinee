@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Devenir Agent Immobilier - MDA</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="form-page-bg">
+  <!-- En-tête -->
+    <header class="main-header">
+        <a href="index.html" class="logo" aria-label="Page d'accueil - Projet Logement">
+            <img src="image/logo.png" alt="Logo de l'entreprise">
+        </a>
+        <nav class="main-nav" aria-label="Navigation principale">
+            <button class="nav-toggle" aria-label="Ouvrir le menu de navigation" aria-expanded="false" aria-controls="nav-menu">
+                <span class="hamburger"></span>
+            </button>
+            <ul class="nav-menu" id="nav-menu">
+                <li><a href="index.html" class="nav-link">Accueil</a></li>
+                <li><a href="a-vendre.html" class="nav-link">À Vendre</a></li>
+                <li><a href="louyer.html" class="nav-link">À Louer</a></li>
+                <li><a href="colocation.html" class="nav-link">Colocation</a></li>
+                <li><a href="service.html" class="nav-link">Service</a></li>
+                <li><a href="contact.html" class="nav-link">Contact</a></li>
+            </ul>
+        </nav>
+        <div class="header-actions">
+            <!-- Dynamically filled by auth.js -->
+        </div>
+    </header>
+
+    <main>
+        <div class="form-container">
+            <h2>Devenir Agent Immobilier (MDA)</h2>
+            <p class="page-intro" style="font-size: 1em; max-width: 100%; margin-bottom: 25px;">Rejoignez notre équipe d'agents et gagnez un revenu complémentaire en nous aidant à trouver des biens immobiliers. Remplissez le formulaire ci-dessous pour postuler.</p>
+            <div id="message-container" style="margin-bottom: 15px; text-align: center;" aria-live="polite"></div>
+            <form id="agent-form">
+                <div class="form-group">
+                    <label for="nom">Nom</label>
+                    <input type="text" id="nom" name="nom" placeholder="Votre nom" required>
+                </div>
+                <div class="form-group">
+                    <label for="prenom">Prénom</label>
+                    <input type="text" id="prenom" name="prenom" placeholder="Votre prénom" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" placeholder="exemple@email.com" required>
+                </div>
+                <div class="form-group">
+                    <label for="telephone">Téléphone</label>
+                    <input type="tel" id="telephone" name="telephone" placeholder="+224XXXXXXXXX" required>
+                </div>
+                <div class="form-group">
+                    <label for="adresse">Adresse</label>
+                    <input type="text" id="adresse" name="adresse" placeholder="Votre lieu de résidence" required>
+                </div>
+                <div class="form-group">
+                    <label for="piece">Pièce d'identité (photo ou scan)</label>
+                    <input type="file" id="piece" name="piece" accept="image/*,.pdf" required>
+                </div>
+                <div class="form-group">
+                    <label for="cv">CV (Curriculum Vitae)</label>
+                    <input type="file" id="cv" name="cv" accept=".pdf,.doc,.docx" required>
+                </div>
+                <div class="form-group">
+                    <label for="signature">Signature (nom complet en lettres capitales)</label>
+                    <input type="text" id="signature" name="signature" placeholder="EX: MOUHAMAD DJOULDE OUMAR BAH" required>
+                </div>
+                <div class="checkbox-group" style="margin-bottom: 20px; display: flex; align-items: center; gap: 10px;">
+                    <input type="checkbox" id="conditions" name="conditions" required>
+                    <label for="conditions" style="margin-bottom: 0; font-weight: normal;">
+                        J'accepte les <a href="#" target="_blank">conditions pour devenir agent</a>.
+                    </label>
+                </div>
+                <button type="submit" class="form-btn" style="background-color: #28a745; border-color: #28a745;">Envoyer la demande</button>
+            </form>
+        </div>
+    </main>
+
+    <footer class="main-footer">
+        <div class="footer-bottom">
+            &copy; 2024 Projet Logement | Tous droits réservés
+        </div>
+    </footer>
+
+    <script src="auth.js"></script>
+    <script src="main.js"></script>
+    <script src="agent_form.js"></script>
+</body>
+</html>

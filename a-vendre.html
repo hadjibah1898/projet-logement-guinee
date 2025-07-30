@@ -4,214 +4,77 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>À Vendre - Projet Logement</title>
-    <style>
-        /* NOTE: Pour un projet plus grand, il serait préférable de déplacer ces styles
-           dans un fichier CSS externe (ex: style.css) et de le lier à chaque page. */
-
-        /* Styles Communs (Header, Footer) */
-        body {
-            font-family: sans-serif;
-            margin: 0;
-            background-color: #f9f9f9;
-        }
-        .main-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 10px 40px;
-            background-color: #f8f8f8;
-            border-bottom: 1px solid #ddd;
-        }
-        .main-header .logo img { height: 50px; }
-        .main-nav ul { margin: 0; padding: 0; list-style: none; display: flex; gap: 20px; }
-        .main-nav a { text-decoration: none; color: #333; font-weight: bold; padding: 5px 10px; }
-        .main-nav a:hover { color: #007bff; }
-        .header-actions a { text-decoration: none; color: white; background-color: #007bff; padding: 10px 15px; border-radius: 5px; font-weight: bold; }
-        .main-footer { background-color: #2c3e50; color: #ecf0f1; padding-top: 20px; }
-        .footer-content { display: flex; justify-content: space-around; padding: 20px 40px; flex-wrap: wrap; }
-        .footer-section { flex: 1 1 300px; margin: 20px; text-align: left; }
-        .footer-section h4 { font-size: 18px; margin-bottom: 15px; color: white; border-bottom: 1px solid #34495e; padding-bottom: 10px; display: inline-block; }
-        .footer-section ul { list-style: none; padding: 0; }
-        .footer-section ul li a { color: #ecf0f1; text-decoration: none; display: block; margin-bottom: 10px; transition: color 0.3s; }
-        .footer-section ul li a:hover { color: #3498db; }
-        .footer-section p { line-height: 1.6; color: #bdc3c7; }
-        .footer-section .contact-info li { margin-bottom: 10px; }
-        .social-links { padding-top: 15px; }
-        .social-links a { margin-right: 15px; color: #ecf0f1; text-decoration: none; transition: color 0.3s; }
-        .social-links a:hover { color: #3498db; }
-        .footer-bottom { text-align: center; padding: 15px; background-color: #233140; font-size: 14px; }
-
-        /* Styles pour la page des annonces */
-        .page-title {
-            text-align: center;
-            margin: 40px 0;
-            font-size: 2.5em;
-            color: #333;
-        }
-        .listings-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-            gap: 30px;
-            padding: 0 40px 60px 40px;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-        .property-card {
-            background-color: white;
-            border-radius: 8px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
-            overflow: hidden;
-            display: flex;
-            flex-direction: column;
-            transition: transform 0.3s, box-shadow 0.3s;
-        }
-        .property-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 25px rgba(0,0,0,0.12);
-        }
-        .property-card img {
-            width: 100%;
-            height: 200px;
-            object-fit: cover;
-        }
-        .property-details {
-            padding: 20px;
-            flex-grow: 1;
-            display: flex;
-            flex-direction: column;
-        }
-        .property-details h3 {
-            margin-top: 0;
-            margin-bottom: 10px;
-            font-size: 1.4em;
-            color: #2c3e50;
-        }
-        .property-location {
-            color: #7f8c8d;
-            margin-bottom: 15px;
-        }
-        .property-features {
-            list-style: none;
-            padding: 0;
-            margin-bottom: 20px;
-            color: #34495e;
-            display: flex;
-            flex-wrap: wrap;
-            gap: 15px;
-        }
-        .property-price {
-            font-size: 1.5em;
-            font-weight: bold;
-            color: #007bff;
-            margin-top: auto; /* Pousse le prix vers le bas */
-            margin-bottom: 20px;
-        }
-        .details-btn {
-            display: block;
-            background-color: #2c3e50;
-            color: white;
-            text-align: center;
-            padding: 12px;
-            text-decoration: none;
-            font-weight: bold;
-            transition: background-color 0.3s;
-        }
-        .details-btn:hover {
-            background-color: #34495e;
-        }
-    </style>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+          integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body>
-    <!-- En-tête (identique aux autres pages) -->
     <header class="main-header">
-        <a href="/" class="logo">
-            <img src="logo.png" alt="Logo de l'entreprise">
+        <a href="index.html" class="logo" aria-label="Page d'accueil - Projet Logement">
+            <img src="image/logo.png" alt="Logo de l'entreprise">
         </a>
-        <nav class="main-nav">
-            <ul>
-                <li><a href="index.html">Accueil</a></li>
-                <li><a href="a-vendre.html">À Vendre</a></li>
-                <li><a href="louyer.html">À Louer</a></li>
-                <li><a href="contact.html">Contact</a></li>
-                <li><a href="service.html">Service</a></li>
+        <nav class="main-nav" aria-label="Navigation principale">
+            <button class="nav-toggle" aria-label="Ouvrir le menu de navigation" aria-expanded="false" aria-controls="nav-menu">
+                <span class="hamburger"></span>
+            </button>
+            <ul class="nav-menu" id="nav-menu">
+                <li><a href="index.html" class="nav-link">Accueil</a></li>
+                <li><a href="a-vendre.html" class="nav-link">À Vendre</a></li>
+                <li><a href="louyer.html" class="nav-link">À Louer</a></li>
+                <li><a href="colocation.html" class="nav-link">Colocation</a></li>
+                <li><a href="service.html" class="nav-link">Service</a></li>
+                <li><a href="contact.html" class="nav-link">Contact</a></li>
             </ul>
         </nav>
         <div class="header-actions">
-            <a href="connexion.html">Inscription</a>
+            <!-- Dynamically filled by auth.js -->
         </div>
     </header>
 
     <main>
         <h1 class="page-title">Nos Biens à Vendre</h1>
 
-        <div class="listings-container">
-            <!-- Carte Propriété 1 -->
-            <div class="property-card">
-                <img src="https://via.placeholder.com/400x250/cccccc/808080?text=Villa+de+Luxe" alt="Villa de luxe avec vue panoramique">
-                <div class="property-details">
-                    <h3>Villa de luxe avec vue panoramique</h3>
-                    <p class="property-location">Bordeaux, 33000</p>
-                    <ul class="property-features">
-                        <li>7 Pièces</li>
-                        <li>4 Salles de bain</li>
-                        <li>250 m²</li>
-                    </ul>
-                    <p class="property-price">7 905 000 000 GNF</p>
-                </div>
-                <a href="#" class="details-btn">Voir les détails</a>
-            </div>
+        <section class="add-listing-section">
+            <p>Vous avez un bien à mettre en vente ? Publiez votre annonce ici.</p>
+            <a href="formulairepublication.html?transaction=vente" class="add-listing-btn">Ajouter une annonce</a>
+        </section>
 
-            <!-- Carte Propriété 2 -->
+        <!-- Ce conteneur sera rempli dynamiquement par JavaScript -->
+        <div class="listings-container" id="listings-container">
+            <!-- Exemples statiques qui servent de squelette de chargement -->
             <div class="property-card">
-                <img src="https://via.placeholder.com/400x250/cccccc/808080?text=Appartement+Haussmannien" alt="Appartement Haussmannien rénové">
+                <span class="property-id">Réf: V1021</span>
+                <img src="image/WhatsApp Image 2025-07-26 à 21.15.46_01818f2c.jpg">
                 <div class="property-details">
-                    <h3>Appartement Haussmannien rénové</h3>
-                    <p class="property-location">Paris, 75016</p>
+                    <h3>Maison moderne avec jardin</h3>
+                    <p class="property-location">Conakry, Lambanyi</p>
                     <ul class="property-features">
-                        <li>4 Pièces</li>
-                        <li>2 Salles de bain</li>
-                        <li>110 m²</li>
+                        <li>5 Pièces</li>
+                        <li>3 Salles de bain</li>
+                        <li>200 m²</li>
                     </ul>
-                    <p class="property-price">11 160 000 000 GNF</p>
+                    <p class="property-price">1 500 000 000 GNF</p>
                 </div>
-                <a href="#" class="details-btn">Voir les détails</a>
+                <a href="details-propriete.html?id=placeholder1" class="details-btn">Voir les détails</a>
             </div>
-
-            <!-- Carte Propriété 3 -->
             <div class="property-card">
-                <img src="https://via.placeholder.com/400x250/cccccc/808080?text=Maison+de+Campagne" alt="Maison de campagne avec terrain">
+                <span class="property-id">Réf: V1022</span>
+                <img src="image/WhatsApp Image 2025-07-26 à 21.14.27_ab573ecb.jpg">
                 <div class="property-details">
-                    <h3>Maison de campagne avec terrain</h3>
-                    <p class="property-location">Toulouse, 31400</p>
-                    <ul class="property-features">
-                        <li>6 Pièces</li>
-                        <li>2 Salles de bain</li>
-                        <li>160 m²</li>
-                    </ul>
-                    <p class="property-price">4 417 500 000 GNF</p>
-                </div>
-                <a href="#" class="details-btn">Voir les détails</a>
-            </div>
-            
-            <!-- Carte Propriété 4 -->
-            <div class="property-card">
-                <img src="https://via.placeholder.com/400x250/cccccc/808080?text=Loft+Industriel" alt="Loft industriel en duplex">
-                <div class="property-details">
-                    <h3>Loft industriel en duplex</h3>
-                    <p class="property-location">Lille, 59000</p>
+                    <h3>Appartement spacieux vue mer</h3>
+                    <p class="property-location">Conakry, Kipé</p>
                     <ul class="property-features">
                         <li>3 Pièces</li>
                         <li>2 Salles de bain</li>
-                        <li>130 m²</li>
+                        <li>120 m²</li>
                     </ul>
-                    <p class="property-price">5 766 000 000 GNF</p>
+                    <p class="property-price">950 000 000 GNF</p>
                 </div>
-                <a href="#" class="details-btn">Voir les détails</a>
+                <a href="details-propriete.html?id=placeholder2" class="details-btn">Voir les détails</a>
             </div>
         </div>
     </main>
 
-    <!-- Pied de page (identique aux autres pages) -->
     <footer class="main-footer">
         <div class="footer-content">
             <div class="footer-section about">
@@ -224,6 +87,7 @@
                     <li><a href="index.html">Accueil</a></li>
                     <li><a href="a-vendre.html">À Vendre</a></li>
                     <li><a href="louyer.html">À Louer</a></li>
+                    <li><a href="colocation.html">Colocation</a></li>
                     <li><a href="contact.html">Contact</a></li>
                     <li><a href="service.html">Service</a></li>
                 </ul>
@@ -232,7 +96,7 @@
                 <h4>Contact & Réseaux</h4>
                 <ul class="contact-info">
                     <li>Email: contact@logement.com</li>
-                    <li>Téléphone: +33 1 23 45 67 89</li>
+                    <li>Téléphone: +224 620 00 00 00</li>
                 </ul>
                 <div class="social-links">
                     <a href="#" target="_blank">Facebook</a>
@@ -246,5 +110,8 @@
             &copy; 2024 Projet Logement | Tous droits réservés
         </div>
     </footer>
+
+    <script src="auth.js"></script>
+    <script src="main.js"></script>
 </body>
 </html>

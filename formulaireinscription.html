@@ -3,44 +3,56 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Colocation - Projet Logement</title>
+    <title>Inscription - Projet Logement</title>
     <link rel="stylesheet" href="style.css">
 </head>
-<body data-property-type="Colocation">
+<body class="form-page-bg">
     <!-- En-tête -->
     <header class="main-header">
-        <a href="index.html" class="logo" aria-label="Page d'accueil - Projet Logement">
+        <a href="index.html" class="logo">
             <img src="image/logo.png" alt="Logo de l'entreprise">
         </a>
-        <nav class="main-nav" aria-label="Navigation principale">
-            <button class="nav-toggle" aria-label="Ouvrir le menu de navigation" aria-expanded="false" aria-controls="nav-menu">
-                <span class="hamburger"></span>
-            </button>
-            <ul class="nav-menu" id="nav-menu">
-                <li><a href="index.html" class="nav-link">Accueil</a></li>
-                <li><a href="a-vendre.html" class="nav-link">À Vendre</a></li>
-                <li><a href="louyer.html" class="nav-link">À Louer</a></li>
-                <li><a href="colocation.html" class="nav-link">Colocation</a></li>
-                <li><a href="service.html" class="nav-link">Service</a></li>
-                <li><a href="contact.html" class="nav-link">Contact</a></li>
+        <nav class="main-nav">
+            <ul>
+                <li><a href="index.html">Accueil</a></li>
+                <li><a href="a-vendre.html">À Vendre</a></li>
+                <li><a href="louyer.html">À Louer</a></li>
+                <li><a href="colocation.html">Colocation</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="service.html">Service</a></li>
             </ul>
         </nav>
         <div class="header-actions">
-            <!-- Dynamically filled by auth.js -->
+            <a href="inscription.html" class="signup-btn active">Inscription</a>
         </div>
     </header>
 
     <main>
-        <h1 class="page-title">Nos Offres de Colocation</h1>
-
-        <section class="add-listing-section">
-            <p>Vous avez une chambre ou un appartement à proposer en colocation ? Publiez votre annonce ici.</p>
-            <a href="formulairepublication.html?transaction=colocation" class="add-listing-btn">Ajouter une annonce</a>
-        </section>
-
-        <!-- Ce conteneur sera rempli dynamiquement par JavaScript -->
-        <div class="listings-container" id="listings-container">
-            <!-- Le contenu sera injecté ici par listings.js -->
+        <div class="form-container">
+            <h1>Créer un compte</h1>
+            <form action="/register-handler" method="POST">
+                <div class="form-group">
+                    <label for="fullname">Nom complet</label>
+                    <input type="text" id="fullname" name="fullname" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Adresse Email</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Mot de passe</label>
+                    <input type="password" id="password" name="password" required minlength="8">
+                </div>
+                <div class="form-group">
+                    <label for="confirm-password">Confirmer le mot de passe</label>
+                    <input type="password" id="confirm-password" name="confirm_password" required>
+                </div>
+                <button type="submit" class="form-btn">S'inscrire</button>
+            </form>
+            <div class="form-links">
+                <span>Vous avez déjà un compte ?</span>
+                <a href="connexion.html">Se connecter</a>
+            </div>
         </div>
     </main>
 
@@ -80,9 +92,5 @@
             &copy; 2024 Projet Logement | Tous droits réservés
         </div>
     </footer>
-
-    <script src="auth.js"></script>
-    <script src="main.js"></script>
-    <script src="listings.js"></script>
 </body>
 </html>

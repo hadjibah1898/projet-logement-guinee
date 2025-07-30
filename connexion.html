@@ -6,31 +6,35 @@
     <title>Connexion - Projet Logement</title>
     <link rel="stylesheet" href="style.css">
 </head>
-<body>
+<body class="form-page-bg">
     <!-- On réutilise le même en-tête pour la cohérence -->
     <header class="main-header">
-        <a href="index.html" class="logo">
-            <img src="logo.png" alt="Logo de l'entreprise">
+        <a href="index.html" class="logo" aria-label="Page d'accueil - Projet Logement">
+            <img src="image/logo.png" alt="Logo de l'entreprise">
         </a>
-        <nav class="main-nav">
-            <ul>
-                <li><a href="index.html">Accueil</a></li>
-                <li><a href="a-vendre.html">À Vendre</a></li>
-                <li><a href="louyer.html">À Louer</a></li>
-                <li><a href="colocation.html">Colocation</a></li>
-                <li><a href="contact.html">Contact</a></li>
-                <li><a href="service.html">Service</a></li>
+        <nav class="main-nav" aria-label="Navigation principale">
+            <button class="nav-toggle" aria-label="Ouvrir le menu de navigation" aria-expanded="false" aria-controls="nav-menu">
+                <span class="hamburger"></span>
+            </button>
+            <ul class="nav-menu" id="nav-menu">
+                <li><a href="index.html" class="nav-link">Accueil</a></li>
+                <li><a href="a-vendre.html" class="nav-link">À Vendre</a></li>
+                <li><a href="louyer.html" class="nav-link">À Louer</a></li>
+                <li><a href="colocation.html" class="nav-link">Colocation</a></li>
+                <li><a href="service.html" class="nav-link">Service</a></li>
+                <li><a href="contact.html" class="nav-link">Contact</a></li>
             </ul>
         </nav>
         <div class="header-actions">
-            <a href="inscription.html">Inscription</a>
+            <!-- Dynamically filled by auth.js -->
         </div>
     </header>
 
     <main>
         <div class="form-container">
             <h1>Connexion</h1>
-            <form action="/login-handler" method="POST">
+            <div id="message-container" style="margin-bottom: 15px; text-align: center;" aria-live="polite"></div>
+            <form id="login-form">
                 <div class="form-group">
                     <label for="email">Adresse Email</label>
                     <input type="email" id="email" name="email" required>
@@ -49,5 +53,47 @@
         </div>
     </main>
 
+    <!-- Pied de page (identique aux autres pages) -->
+    <footer class="main-footer">
+        <div class="footer-content">
+            <div class="footer-section about">
+                <h4>À Propos de Nous</h4>
+                <p>Votre partenaire de confiance pour trouver la maison de vos rêves. Nous offrons un service personnalisé pour l'achat, la vente et la location de biens immobiliers.</p>
+            </div>
+            <div class="footer-section links">
+                <h4>Liens Rapides</h4>
+                <ul>
+                    <li><a href="index.html">Accueil</a></li>
+                    <li><a href="a-vendre.html">À Vendre</a></li>
+                    <li><a href="louyer.html">À Louer</a></li>
+                    <li><a href="colocation.html">Colocation</a></li>
+                    <li><a href="service.html">Service</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-section contact-social">
+                <h4>Contact & Réseaux</h4>
+                <ul class="contact-info">
+                    <li>Email: contact@logement.com</li>
+                    <li>Téléphone: +33 1 23 45 67 89</li>
+                </ul>
+                <div class="social-links">
+                    <a href="#" target="_blank">Facebook</a>
+                    <a href="#" target="_blank">Twitter</a>
+                    <a href="#" target="_blank">TikTok</a>
+                    <a href="#" target="_blank">WhatsApp</a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            &copy; 2024 Projet Logement | Tous droits réservés
+        </div>
+    </footer>
+
+    <script src="auth.js"></script>
+    <!-- Le script main.js gère la navigation et l'indicateur de page active -->
+    <script src="main.js"></script>
+    <!-- Le script login.js gère la logique du formulaire de cette page -->
+    <script src="login.js"></script>
 </body>
 </html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Succès - Projet Logement</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            text-align: center;
+            background-color: #f4f4f4;
+        }
+        .success-container {
+            background: white;
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 0 15px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #28a745;
+        }
+        p {
+            font-size: 1.2em;
+            color: #333;
+        }
+        a {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="success-container">
+        <h1>Opération réussie !</h1>
+        <p id="success-message">Votre action a été complétée avec succès.</p>
+        <a href="index.html">Retour à l'accueil</a>
+    </div>
+
+    <script>
+        // Affiche le message personnalisé passé dans l'URL
+        const params = new URLSearchParams(window.location.search);
+        const message = params.get('message');
+        if (message) {
+            document.getElementById('success-message').textContent = decodeURIComponent(message);
+        }
+    </script>
+</body>
+</html>

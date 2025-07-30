@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Détails - Appartement lumineux en centre-ville</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Styles spécifiques à la page de détails */
+        .property-details-page {
+            max-width: 1100px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        /* Styles pour la nouvelle galerie slider */
+        .main-gallery-slider {
+            position: relative;
+            width: 100%;
+            height: 550px; /* Hauteur fixe pour la galerie */
+            overflow: hidden;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+        }
+
+        .gallery-slide {
+            display: none; /* Caché par défaut */
+            width: 100%;
+            height: 100%;
+            transition: opacity 0.5s ease-in-out;
+        }
+
+        .gallery-slide.active {
+            display: block; /* Affiche l'image active */
+        }
+
+        .gallery-slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Styles pour les flèches de navigation du slider */
+        .slider-arrow {
+            cursor: pointer;
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: auto;
+            padding: 16px;
+            color: white;
+            font-weight: bold;
+            font-size: 24px;
+            transition: background-color 0.4s ease;
+            border-radius: 0 3px 3px 0;
+            user-select: none;
+            background-color: rgba(0,0,0,0.3);
+        }
+
+        .slider-arrow.prev-slide {
+            left: 0;
+            border-radius: 3px 0 0 3px;
+        }
+
+        .slider-arrow.next-slide {
+            right: 0;
+        }
+
+        .slider-arrow:hover {
+            background-color: rgba(0,0,0,0.6);
+        }
+
+        .details-content {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 40px;
+            align-items: start;
+        }
+
+        .property-main-info h1 {
+            font-size: 2.2em;
+            margin-top: 0;
+            color: #2c3e50;
+        }
+
+        .property-main-info .location {
+            font-size: 1.2em;
+            color: #7f8c8d;
+            margin-bottom: 20px;
+        }
+
+        .property-main-info .price {
+            font-size: 2em;
+            font-weight: bold;
+            color: #007bff;
+            margin-bottom: 30px;
+        }
+        .property-main-info .price span {
+            font-size: 0.6em;
+            font-weight: normal;
+        }
+
+        .section-title-details {
+            font-size: 1.5em;
+            color: #2c3e50;
+            border-bottom: 2px solid #007bff;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+
+        .description p {
+            line-height: 1.7;
+            color: #34495e;
+        }
+
+        .features-list {
+            list-style: none;
+            padding: 0;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+        }
+
+
+        .features-list li {
+            background-color: #f8f9fa;
+            padding: 15px;
+            border-radius: 5px;
+            text-align: center;
+            font-weight: 500;
+            border: 1px solid #eee;
+        }
+
+        .contact-agent-card {
+            background-color: #fff;
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            position: sticky;
+            top: 20px;
+        }
+
+        .contact-agent-card h3 {
+            margin-top: 0;
+        }
+        
+        .slide-counter {
+            position: absolute;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: rgba(0,0,0,0.6);
+            color: white;
+            padding: 5px 12px;
+            border-radius: 4px;
+            font-size: 0.9em;
+        }
+
+        /* Responsive */
+        @media (max-width: 800px) {
+            .details-content {
+                grid-template-columns: 1fr;
+            }
+        }
+
+    </style>
+</head>
+<body>
+    <!-- En-tête (identique aux autres pages) -->
+    <header class="main-header">
+        <a href="index.html" class="logo">
+            <img src="logo.png" alt="Logo de l'entreprise">
+        </a>
+        <nav class="main-nav">
+            <ul>
+                <li><a href="index.html">Accueil</a></li>
+                <li><a href="a-vendre.html">À Vendre</a></li>
+                <li><a href="louyer.html">À Louer</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="service.html">Service</a></li>
+            </ul>
+        </nav>
+        <div class="header-actions">
+            <a href="connexion.html">Inscription</a>
+        </div>
+    </header>
+
+    <main class="property-details-page">
+        <!-- Galerie d'images -->
+        <section class="main-gallery-slider">
+            <div class="gallery-slide active">
+                <img src="image/WhatsApp Image 2025-07-26 à 21.14.27_851b5e40.jpg" alt="Vue principale de l'appartement lumineux en centre-ville">
+            </div>
+            <div class="gallery-slide">
+                <img src="image/WhatsApp Image 2025-07-26 à 21.14.26_82e2c082.jpg" alt="Vue du salon spacieux et lumineux">
+            </div>
+            <div class="gallery-slide">
+                <img src="image/WhatsApp Image 2025-07-26 à 21.14.27_4694542d.jpg" alt="Cuisine ouverte et moderne">
+            </div>
+            <div class="gallery-slide">
+                <img src="image/WhatsApp Image 2025-07-26 à 21.15.11_8ab1a454.jpg" alt="Chambre confortable avec parquet">
+            </div>
+            <div class="gallery-slide">
+                <img src="image/WhatsApp Image 2025-07-26 à 21.15.10_2ba54412.jpg" alt="Salle de bain avec douche à l'italienne">
+            </div>
+            <a class="slider-arrow prev-slide">&#10094;</a>
+            <a class="slider-arrow next-slide">&#10095;</a>
+            <div class="slide-counter">1 / 5</div>
+        </section>
+
+        <div class="details-content">
+            <!-- Informations principales -->
+            <div class="property-main-info">
+                <h1>Appartement lumineux en centre-ville</h1>
+                <p class="location">Paris, 75003</p>
+                <p class="price">13 950 000 GNF <span>/ mois</span></p>
+
+                <section class="description">
+                    <h2 class="section-title-details">Description</h2>
+                    <p>
+                        Superbe appartement de 55 m² situé au cœur de Paris, dans un quartier prisé. Très lumineux grâce à ses grandes fenêtres, il offre un cadre de vie agréable et fonctionnel. L'appartement a été récemment rénové avec des matériaux de qualité.
+                    </p>
+                    <p>
+                        Il se compose d'un séjour spacieux, d'une cuisine américaine entièrement équipée, d'une chambre confortable avec rangements et d'une salle de bain moderne. Idéal pour un couple ou une personne seule cherchant à vivre au centre de la capitale, avec tous les commerces et transports à proximité immédiate.
+                    </p>
+                </section>
+
+                <section class="features">
+                    <h2 class="section-title-details">Caractéristiques</h2>
+                    <ul class="features-list">
+                        <li><strong>Type :</strong> Appartement</li>
+                        <li><strong>Pièces :</strong> 2</li>
+                        <li><strong>Surface :</strong> 55 m²</li>
+                        <li><strong>Salle de bain :</strong> 1</li>
+                        <li><strong>Étage :</strong> 3ème</li>
+                        <li><strong>Ascenseur :</strong> Oui</li>
+                    </ul>
+                </section>
+            </div>
+
+            <!-- Carte de contact -->
+            <aside class="contact-agent-card">
+                <h3>Contacter l'agent</h3>
+                <p>Intéressé par ce bien ? Contactez-nous pour planifier une visite.</p>
+                <form action="/contact-agent-handler" method="POST">
+                    <input type="hidden" name="property_id" value="L001">
+                    <div class="form-group" style="margin-bottom: 10px;">
+                        <input type="text" name="name" placeholder="Votre nom" required style="width: 100%; padding: 8px;">
+                    </div>
+                    <div class="form-group" style="margin-bottom: 10px;">
+                        <input type="email" name="email" placeholder="Votre email" required style="width: 100%; padding: 8px;">
+                    </div>
+                    <div class="form-group" style="margin-bottom: 10px;">
+                        <textarea name="message" placeholder="Bonjour, je suis intéressé par le bien Réf: L001..." required style="width: 100%; padding: 8px; min-height: 80px;"></textarea>
+                    </div>
+                    <button type="submit" class="details-btn" style="width: 100%; border: none; cursor: pointer;">Envoyer</button>
+                </form>
+            </aside>
+        </div>
+    </main>
+
+    <!-- Pied de page (identique aux autres pages) -->
+    <footer class="main-footer">
+        <div class="footer-content">
+            <div class="footer-section about">
+                <h4>À Propos de Nous</h4>
+                <p>Votre partenaire de confiance pour trouver la maison de vos rêves. Nous offrons un service personnalisé pour l'achat, la vente et la location de biens immobiliers.</p>
+            </div>
+            <div class="footer-section links">
+                <h4>Liens Rapides</h4>
+                <ul>
+                    <li><a href="index.html">Accueil</a></li>
+                    <li><a href="a-vendre.html">À Vendre</a></li>
+                    <li><a href="louyer.html">À Louer</a></li>
+                    <li><a href="colocation.html">Colocation</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="service.html">Service</a></li>
+                </ul>
+            </div>
+            <div class="footer-section contact-social">
+                <h4>Contact & Réseaux</h4>
+                <ul class="contact-info">
+                    <li>Email: contact@logement.com</li>
+                    <li>Téléphone: +224 620 00 00 00</li>
+                </ul>
+                <div class="social-links">
+                    <a href="#" target="_blank">Facebook</a>
+                    <a href="#" target="_blank">Twitter</a>
+                    <a href="#" target="_blank">TikTok</a>
+                    <a href="#" target="_blank">WhatsApp</a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            &copy; 2024 Projet Logement | Tous droits réservés
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const slides = document.querySelectorAll('.gallery-slide');
+            const prevBtn = document.querySelector('.prev-slide');
+            const nextBtn = document.querySelector('.next-slide');
+            const counter = document.querySelector('.slide-counter');
+            let currentSlide = 0;
+
+            function showSlide(index) {
+                slides.forEach((slide, i) => {
+                    slide.classList.remove('active');
+                    if (i === index) {
+                        slide.classList.add('active');
+                    }
+                });
+                counter.textContent = `${index + 1} / ${slides.length}`;
+            }
+
+            nextBtn.addEventListener('click', () => {
+                currentSlide = (currentSlide + 1) % slides.length;
+                showSlide(currentSlide);
+            });
+
+            prevBtn.addEventListener('click', () => {
+                currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+                showSlide(currentSlide);
+            });
+
+            // Afficher la première image au chargement
+            showSlide(currentSlide);
+        });
+    </script>
+</body>
+</html>

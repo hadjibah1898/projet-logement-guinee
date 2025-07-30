@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Publier une Annonce - Projet Logement</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header class="main-header">
+        <a href="index.html" class="logo" aria-label="Page d'accueil - Projet Logement">
+            <img src="image/logo.png" alt="Logo de l'entreprise">
+        </a>
+        <nav class="main-nav" aria-label="Navigation principale">
+            <button class="nav-toggle" aria-label="Ouvrir le menu de navigation" aria-expanded="false" aria-controls="nav-menu">
+                <span class="hamburger"></span>
+            </button>
+            <ul class="nav-menu" id="nav-menu">
+                <li><a href="index.html" class="nav-link">Accueil</a></li>
+                <li><a href="a-vendre.html" class="nav-link">À Vendre</a></li>
+                <li><a href="louyer.html" class="nav-link">À Louer</a></li>
+                <li><a href="colocation.html" class="nav-link">Colocation</a></li>
+                <li><a href="service.html" class="nav-link">Service</a></li>
+                <li><a href="contact.html" class="nav-link">Contact</a></li>
+            </ul>
+        </nav>
+        <div class="header-actions">
+            <!-- Rempli dynamiquement par auth.js -->
+        </div>
+    </header>
+
+    <main class="form-page-container">
+        <div class="form-wrapper">
+            <h2>Publier une nouvelle annonce</h2>
+            <p>Remplissez les informations ci-dessous pour mettre votre bien en ligne.</p>
+            <div id="message-container"></div>
+            <form id="publication-form">
+                <div class="form-group">
+                    <label for="titre">Titre de l'annonce</label>
+                    <input type="text" id="titre" name="titre" required>
+                </div>
+                <div class="form-group">
+                    <label for="description">Description</label>
+                    <textarea id="description" name="description" rows="5" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="type">Type de transaction</label>
+                    <select id="type" name="type" required>
+                        <option value="">-- Choisir --</option>
+                        <option value="Vente">Vente</option>
+                        <option value="Location">Location</option>
+                        <option value="Colocation">Colocation</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="prix">Prix (GNF)</label>
+                    <input type="number" id="prix" name="prix" required>
+                </div>
+                <div class="form-group">
+                    <label for="surface">Surface (m²)</label>
+                    <input type="number" id="surface" name="surface" required>
+                </div>
+                <div class="form-group">
+                    <label for="adresse">Adresse</label>
+                    <input type="text" id="adresse" name="adresse" required>
+                </div>
+                <div class="form-group">
+                    <label for="ville">Ville</label>
+                    <input type="text" id="ville" name="ville" required>
+                </div>
+                <div class="form-group">
+                    <label for="tel">Numéro de téléphone de contact</label>
+                    <input type="tel" id="tel" name="tel" required>
+                </div>
+                <div class="form-group">
+                    <label for="photos">Photos du bien (10 max, format PNG, JPG, WebP)</label>
+                    <input type="file" id="photos" name="photos" multiple accept="image/png, image/jpeg, image/webp">
+                </div>
+                <button type="submit" class="btn-submit">Publier l'annonce</button>
+            </form>
+        </div>
+    </main>
+
+    <script src="auth.js"></script>
+    <script src="main.js"></script>
+    <script src="formulairepublication.js"></script>
+</body>
+</html>

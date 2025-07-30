@@ -5,24 +5,29 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Accueil - Projet Logement</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+          integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body>
     <header class="main-header">
-        <a href="index.html" class="logo">
-            <img src="logo.png" alt="Logo de l'entreprise">
+        <a href="index.html" class="logo" aria-label="Page d'accueil - Projet Logement">
+            <img src="image/logo.png" alt="Logo de l'entreprise">
         </a>
-        <nav class="main-nav">
-            <ul>
-                <li><a href="index.html">Accueil</a></li>
-                <li><a href="a-vendre.html">À Vendre</a></li>
-                <li><a href="louyer.html">À Louer</a></li>
-                <li><a href="colocation.html">Colocation</a></li>
-                <li><a href="contact.html">Contact</a></li>
-                <li><a href="service.html">Service</a></li>
+        <nav class="main-nav" aria-label="Navigation principale">
+            <button class="nav-toggle" aria-label="Ouvrir le menu de navigation" aria-expanded="false" aria-controls="nav-menu">
+                <span class="hamburger"></span>
+            </button>
+            <ul class="nav-menu" id="nav-menu">
+                <li><a href="index.html" class="nav-link active" aria-current="page">Accueil</a></li>
+                <li><a href="a-vendre.html" class="nav-link">À Vendre</a></li>
+                <li><a href="louyer.html" class="nav-link">À Louer</a></li>
+                <li><a href="colocation.html" class="nav-link">Colocation</a></li>
+                <li><a href="service.html" class="nav-link">Service</a></li>
+                <li><a href="contact.html" class="nav-link">Contact</a></li>
             </ul>
         </nav>
         <div class="header-actions">
-            <a href="inscription.html">Inscription</a>
+            <!-- Dynamically filled by auth.js -->
         </div>
     </header>
 
@@ -32,14 +37,22 @@
                 <h1>Trouvez le logement de vos rêves</h1>
                 <p>La recherche la plus simple pour louer, acheter ou trouver une colocation.</p>
                 <div class="search-form-container">
-                    <form action="/search-handler" method="GET" class="advanced-search-form" role="search">
+                    <form id="main-search-form" class="advanced-search-form" role="search">
+                        <div class="form-group">
+                            <label for="transaction-type">Transaction:</label>
+                            <select id="transaction-type" name="type" aria-label="Type de transaction">
+                                <option value="Vente" selected>À Vendre</option>
+                                <option value="Location">À Louer</option>
+                                <option value="Colocation">Colocation</option>
+                            </select>
+                        </div>
                         <div class="form-group">
                             <label for="location">Localisation:</label>
-                            <input type="text" id="location" name="location" placeholder="Ville, quartier..." aria-label="Localisation">
+                            <input type="text" id="location" name="ville" placeholder="Ville, quartier..." aria-label="Localisation">
                         </div>
                         <div class="form-group">
                             <label for="property-type">Type de bien:</label>
-                            <select id="property-type" name="property_type" aria-label="Type de bien">
+                            <select id="property-type" name="type_bien" aria-label="Type de bien">
                                 <option value="">Tous types</option>
                                 <option value="appartement">Appartement</option>
                                 <option value="maison">Maison</option>
@@ -50,20 +63,41 @@
                         <div class="form-group price-group">
                             <label>Prix (GNF):</label>
                             <div class="min-max-inputs">
-                                <input type="number" name="min_price" placeholder="Min" aria-label="Prix minimum">
-                                <input type="number" name="max_price" placeholder="Max" aria-label="Prix maximum">
+                                <input type="number" name="prix_min" placeholder="Min" aria-label="Prix minimum">
+                                <input type="number" name="prix_max" placeholder="Max" aria-label="Prix maximum">
                             </div>
                         </div>
                         <div class="form-group surface-group">
                             <label>Surface (m²):</label>
                             <div class="min-max-inputs">
 
-                                <input type="number" name="min_surface" placeholder="Min">
-                                <input type="number" name="max_surface" placeholder="Max">
+                                <input type="number" name="surface_min" placeholder="Min" aria-label="Surface minimum">
+                                <input type="number" name="surface_max" placeholder="Max" aria-label="Surface maximum">
                             </div>
                         </div>
                         <button type="submit" class="search-btn">Rechercher</button>
                     </form>
+                </div>
+            </div>
+        </section>
+
+        <section class="why-choose-us">
+            <h2 class="section-title">Pourquoi Nous Choisir ?</h2>
+            <div class="features-container">
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fas fa-check-circle"></i></div>
+                    <h3>Annonces Vérifiées</h3>
+                    <p>Chaque annonce est soigneusement vérifiée par notre équipe pour vous garantir des offres de qualité et sans surprise.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fas fa-shield-halved"></i></div>
+                    <h3>Transactions Sécurisées</h3>
+                    <p>Nous mettons à votre disposition une plateforme sécurisée pour vos échanges et vos démarches en toute tranquillité.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fas fa-headset"></i></div>
+                    <h3>Support Dédié</h3>
+                    <p>Notre service client est disponible 7j/7 pour répondre à toutes vos questions et vous accompagner dans votre projet.</p>
                 </div>
             </div>
         </section>
@@ -78,37 +112,36 @@
                     <li><i class="fas fa-check-circle"></i> Colocations étudiantes vérifiées</li>
                     <li><i class="fas fa-check-circle"></i> Options pour tous les budgets</li>
                     <li><i class="fas fa-check-circle"></i> Assistance personnalisée pour votre recherche</li>
-                    <li><i class="fas fa-check-circle"></i> Conseils et guides pour faciliter votre installation</li>
                 </ul>
                 <a href="inscription.html" class="cta-button">Rejoignez la communauté étudiante</a>
             </div>
         </section>
 
-
-
-
-
         <section class="featured-listings">
             <h2 class="section-title">Nos annonces à la une</h2>
+            <!-- Ce conteneur sera rempli dynamiquement par JavaScript -->
+            <button type="button" class="slider-arrow prev-slide" aria-label="Image précédente">&#10094;</button>
             <div class="listings-container">
                 <!-- Annonce 1: À Vendre -->
                 <div class="property-card">
-                    <img src="https://via.placeholder.com/400x250/cccccc/808080?text=Villa+de+Luxe" alt="Villa de luxe avec vue panoramique">
+                    <span class="property-id">Réf: V001</span>
+                    <img src="image/WhatsApp Image 2025-07-26 à 21.14.27_851b5e40.jpg" alt="Villa de luxe avec vue panoramique">
                     <div class="property-details">
                         <h3>Villa de luxe avec vue panoramique</h3>
-                        <p class="property-location">Bordeaux, 33000</p>
+                        <p class="property-location">Conakry, Kaloum </p>
                         <ul class="property-features">
                             <li>7 Pièces</li>
                             <li>250 m²</li>
                         </ul>
                         <p class="property-price">7 905 000 000 GNF</p>
                     </div>
-                    <a href="a-vendre.html" class="details-btn">Voir les détails</a>
+                    <a href="details-propriete.html?id=V001" class="details-btn">Voir les détails</a>
                 </div>
 
                 <!-- Annonce 2: À Louer -->
                 <div class="property-card">
-                    <img src="https://via.placeholder.com/400x250/cccccc/808080?text=Appartement+Centre-Ville" alt="Appartement lumineux en centre-ville">
+                    <span class="property-id">Réf: L001</span>
+                    <img src="image/WhatsApp Image 2025-07-26 à 21.15.47_6e23b83b.jpg" alt="Appartement lumineux en centre-ville">
                     <div class="property-details">
                         <h3>Appartement lumineux en centre-ville</h3>
                         <p class="property-location">Conakry, Kaloum</p>
@@ -118,12 +151,13 @@
                         </ul>
                         <p class="property-price">13 950 000 GNF <span>/ mois</span></p>
                     </div>
-                    <a href="louyer.html" class="details-btn">Voir les détails</a>
+                    <a href="details-propriete.html?id=L001" class="details-btn">Voir les détails</a>
                 </div>
 
                 <!-- Annonce 3: Colocation -->
                 <div class="property-card">
-                    <img src="https://via.placeholder.com/400x250/cccccc/808080?text=Chambre+en+Colocation" alt="Chambre dans un grand appartement">
+                    <span class="property-id">Réf: C001</span>
+                    <img src="image/WhatsApp Image 2025-07-26 à 21.15.10_d51395fd.jpg">
                     <div class="property-details">
                         <h3>Chambre meublée dans grand T4</h3>
                         <p class="property-location">Conakry, Kipé</p>
@@ -133,12 +167,111 @@
                         </ul>
                         <p class="property-price">2 500 000 GNF <span>/ mois</span></p>
                     </div>
-                    <a href="colocation.html" class="details-btn">Voir les détails</a>
+                    <a href="details-propriete.html?id=C001" class="details-btn">Voir les détails</a>
                 </div>
+            </div>
+        </section>
+
+        <section class="join-us-cta">
+            <h2 class="section-title">Rejoignez notre communauté</h2>
+            <p class="page-intro">Créez un compte pour débloquer des fonctionnalités exclusives et simplifier votre recherche immobilière.</p>
+            <div class="benefits-container">
+                <div class="benefit-item">
+                    <div class="benefit-icon"><i class="fas fa-bullhorn"></i></div>
+                    <h3>Publiez vos annonces</h3>
+                    <p>Mettez en vente ou en location votre bien facilement et atteignez des milliers d'acheteurs potentiels.</p>
+                </div>
+                <div class="benefit-item">
+                    <div class="benefit-icon"><i class="fas fa-heart"></i></div>
+                    <h3>Sauvegardez vos favoris</h3>
+                    <p>Gardez une trace de toutes les annonces qui vous intéressent pour les retrouver en un clic.</p>
+                </div>
+                <div class="benefit-item">
+                    <div class="benefit-icon"><i class="fas fa-bell"></i></div>
+                    <h3>Recevez des alertes</h3>
+                    <p>Soyez le premier informé des nouvelles annonces qui correspondent à vos critères de recherche.</p>
+                </div>
+            </div>
+            <a href="inscription.html" class="cta-button-green">Créer un compte gratuitement</a>
+        </section>
+
+        <section class="how-it-works">
+            <h2 class="section-title">Comment ça marche ?</h2>
+            <div class="steps-container">
+                <div class="step-card">
+                    <div class="step-icon"><i class="fas fa-search"></i></div>
+                    <h3>1. Recherchez</h3>
+                    <p>Utilisez nos filtres avancés pour trouver le bien qui correspond parfaitement à vos critères.</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-icon"><i class="fas fa-comments"></i></div>
+                    <h3>2. Contactez</h3>
+                    <p>Échangez directement avec les propriétaires ou les agences via notre messagerie sécurisée.</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-icon"><i class="fas fa-file-signature"></i></div>
+                    <h3>3. Finalisez</h3>
+                    <p>Organisez une visite et signez votre contrat en toute confiance et sérénité.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="testimonials">
+            <h2 class="section-title">Ce que nos utilisateurs disent</h2>
+            <div class="testimonials-container">
+                <div class="testimonial-card">
+                    <img src="https://i.pravatar.cc/100?img=1" alt="Photo de Marie D.">
+                    <p class="quote">"Grâce à ce site, j'ai trouvé la colocation parfaite pour mes études en moins d'une semaine. Simple et efficace !"</p>
+                    <p class="author">- Marie D., Étudiante</p>
+                    <div class="stars">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <img src="https://i.pravatar.cc/100?img=32" alt="Photo de Thomas L.">
+                    <p class="quote">"J'ai pu louer mon appartement très rapidement. La plateforme est intuitive et m'a mis en contact avec des locataires sérieux."</p>
+                    <p class="author">- Thomas L., Propriétaire</p>
+                    <div class="stars">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="partners">
+            <h2 class="section-title">Nos Agences Partenaires</h2>
+            <p class="page-intro" style="margin-bottom: 40px;">Nous collaborons avec les meilleures agences pour vous offrir un large choix de biens de qualité.</p>
+            <div class="partner-logos">
+                <!-- Remplacez par les vrais logos de vos partenaires -->
+                <img src="https://via.placeholder.com/150x60/cccccc/808080?text=Agence+A" alt="Logo Agence A">
+                <img src="https://via.placeholder.com/150x60/cccccc/808080?text=Agence+B" alt="Logo Agence B">
+                <img src="https://via.placeholder.com/150x60/cccccc/808080?text=Agence+C" alt="Logo Agence C">
+                <img src="https://via.placeholder.com/150x60/cccccc/808080?text=Agence+D" alt="Logo Agence D">
+                <img src="https://via.placeholder.com/150x60/cccccc/808080?text=Agence+E" alt="Logo Agence E">
             </div>
         </section>
     </main>
 
+    <!-- Chatbot -->
+    <div id="chatbot-toggle" aria-controls="chatbot-window" aria-expanded="false" role="button" tabindex="0">
+        <span class="icon">💬</span>
+        <span class="sr-only">Ouvrir l'assistant virtuel</span>
+    </div>
+
+    <div id="chatbot-window" class="hidden" role="region" aria-labelledby="chatbot-header-title">
+        <div class="chatbot-header">
+            <h3 id="chatbot-header-title">Assistant Virtuel</h3>
+            <button id="close-chatbot" aria-label="Fermer l'assistant">&times;</button>
+        </div>
+        <div id="chatbot-messages" aria-live="polite">
+        </div>
+        <form id="chatbot-input-form" class="chatbot-input-area">
+            <input type="text" id="chatbot-input-field" placeholder="Posez votre question..." required autocomplete="off">
+            <button type="submit" aria-label="Envoyer le message">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" fill="currentColor"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>
+            </button>
+        </form>
+    </div>
     <footer class="main-footer">
         <div class="footer-content">
             <div class="footer-section about">
@@ -174,76 +307,10 @@
             &copy; 2024 Projet Logement | Tous droits réservés
         </div>
     </footer>
-
-    <!-- Chatbot -->
-    <div id="chatbot-toggle">
-        <span class="icon">💬</span>
-    </div>
-
-    <div id="chatbot-window" class="hidden">
-        <div class="chatbot-header">
-            <h3>Assistant Virtuel</h3>
-            <button id="close-chatbot">&times;</button>
-        </div>
-        <div id="chatbot-messages">
-            <div class="message bot-message">
-                <p>Bonjour ! Comment puis-je vous aider aujourd'hui ?</p>
-            </div>
-        </div>
-        <div id="chatbot-input">
-            <p>Questions fréquentes :</p>
-            <button class="quick-reply">Quels sont vos services ?</button>
-            <button class="quick-reply">Comment puis-je publier une annonce ?</button>
-            <button class="quick-reply">Comment vous contacter ?</button>
-        </div>
-    </div>
-
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const chatbotToggle = document.getElementById('chatbot-toggle');
-            const chatbotWindow = document.getElementById('chatbot-window');
-            const closeChatbot = document.getElementById('close-chatbot');
-            const messagesContainer = document.getElementById('chatbot-messages');
-            const quickReplyContainer = document.getElementById('chatbot-input');
-
-            const responses = {
-                "Quels sont vos services ?": "Nous proposons l'estimation de biens, l'accompagnement pour l'achat et la vente, la gestion locative, et bien plus. Consultez notre page 'Service' pour tous les détails !",
-                "Comment puis-je publier une annonce ?": "Pour publier une annonce, vous devez d'abord créer un compte via la page d'inscription. Une fois connecté, vous aurez accès à votre espace personnel pour gérer vos publications.",
-                "Comment vous contacter ?": "Vous pouvez nous joindre via le formulaire sur notre page 'Contact', par email à contact@logement.com ou par téléphone au +224 620 00 00 00."
-            };
-
-            // Ouvre/ferme le chatbot
-            chatbotToggle.addEventListener('click', () => chatbotWindow.classList.toggle('hidden'));
-            closeChatbot.addEventListener('click', () => chatbotWindow.classList.add('hidden'));
-
-            // Gère les clics sur les questions rapides
-            quickReplyContainer.addEventListener('click', (e) => {
-                if (e.target.classList.contains('quick-reply')) {
-                    const userQuestion = e.target.textContent;
-                    addMessage(userQuestion, 'user-message');
-
-                    // Simule une réponse du bot
-                    setTimeout(() => {
-                        const botResponse = responses[userQuestion] || "Je ne suis pas sûr de comprendre. Pouvez-vous reformuler ?";
-                        addMessage(botResponse, 'bot-message');
-                    }, 1000);
-                }
-            });
-
-            function addMessage(text, type) {
-                const messageWrapper = document.createElement('div');
-                messageWrapper.className = `message ${type}`;
-                
-                const messageP = document.createElement('p');
-                messageP.textContent = text;
-
-                messageWrapper.appendChild(messageP);
-                messagesContainer.appendChild(messageWrapper);
-                
-                // Fait défiler vers le bas pour voir le dernier message
-                messagesContainer.scrollTop = messagesContainer.scrollHeight;
-            }
-        });
-    </script>
+    <script src="auth.js"></script>
+    <script src="main.js"></script>
+    <script src="search.js"></script>
+    <script src="homepage.js"></script>
+    <script src="chatbot.js"></script>
 </body>
 </html>

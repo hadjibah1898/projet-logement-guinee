@@ -5,25 +5,30 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contact - Projet Logement</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+          integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
-<body>
+<body class="contact-page-bg">
     <!-- En-tête -->
     <header class="main-header">
-        <a href="index.html" class="logo">
-            <img src="logo.png" alt="Logo de l'entreprise">
+        <a href="index.html" class="logo" aria-label="Page d'accueil - Projet Logement">
+            <img src="image/logo.png" alt="Logo de l'entreprise">
         </a>
-        <nav class="main-nav">
-            <ul>
-                <li><a href="index.html">Accueil</a></li>
-                <li><a href="a-vendre.html">À Vendre</a></li>
-                <li><a href="louyer.html">À Louer</a></li>
-                <li><a href="colocation.html">Colocation</a></li>
-                <li><a href="contact.html">Contact</a></li>
-                <li><a href="service.html">Service</a></li>
+        <nav class="main-nav" aria-label="Navigation principale">
+            <button class="nav-toggle" aria-label="Ouvrir le menu de navigation" aria-expanded="false" aria-controls="nav-menu">
+                <span class="hamburger"></span>
+            </button>
+            <ul class="nav-menu" id="nav-menu">
+                <li><a href="index.html" class="nav-link">Accueil</a></li>
+                <li><a href="a-vendre.html" class="nav-link">À Vendre</a></li>
+                <li><a href="louyer.html" class="nav-link">À Louer</a></li>
+                <li><a href="colocation.html" class="nav-link">Colocation</a></li>
+                <li><a href="service.html" class="nav-link">Service</a></li>
+                <li><a href="contact.html" class="nav-link">Contact</a></li>
             </ul>
         </nav>
         <div class="header-actions">
-            <a href="inscription.html">Inscription</a>
+            <!-- Dynamically filled by auth.js -->
         </div>
     </header>
 
@@ -37,7 +42,8 @@
             <!-- Section Formulaire -->
             <div class="contact-form-section">
                 <div class="form-container">
-                    <form action="/contact-handler" method="POST">
+                    <div id="message-container" aria-live="polite"></div>
+                    <form id="contact-form">
                         <div class="form-group">
                             <label for="name">Nom complet</label>
                             <input type="text" id="name" name="name" required>
@@ -65,15 +71,15 @@
                 <address>
                     <ul>
                         <li>
-                            <span class="icon" aria-hidden="true">📍</span>
+                            <i class="fas fa-map-marker-alt icon" aria-hidden="true"></i>
                             <span>Kipé, Centre Emetteur<br>Conakry, Guinée</span>
                         </li>
                         <li>
-                            <span class="icon" aria-hidden="true">📞</span>
+                            <i class="fas fa-phone-alt icon" aria-hidden="true"></i>
                             <a href="tel:+224620000000">+224 620 00 00 00</a>
                         </li>
                         <li>
-                            <span class="icon" aria-hidden="true">✉️</span>
+                            <i class="fas fa-envelope icon" aria-hidden="true"></i>
                             <a href="mailto:contact@logement.com">contact@logement.com</a>
                         </li>
                     </ul>
@@ -92,6 +98,27 @@
             </iframe>
         </div>
     </main>
+
+    <!-- Chatbot -->
+    <div id="chatbot-toggle" aria-controls="chatbot-window" aria-expanded="false" role="button" tabindex="0">
+        <span class="icon">💬</span>
+        <span class="sr-only">Ouvrir l'assistant virtuel</span>
+    </div>
+
+    <div id="chatbot-window" class="hidden" role="region" aria-labelledby="chatbot-header-title">
+        <div class="chatbot-header">
+            <h3 id="chatbot-header-title">Assistant Virtuel</h3>
+            <button id="close-chatbot" aria-label="Fermer l'assistant">&times;</button>
+        </div>
+        <div id="chatbot-messages" aria-live="polite">
+        </div>
+        <form id="chatbot-input-form" class="chatbot-input-area">
+            <input type="text" id="chatbot-input-field" placeholder="Posez votre question..." required autocomplete="off">
+            <button type="submit" aria-label="Envoyer le message">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" fill="currentColor"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>
+            </button>
+        </form>
+    </div>
 
     <!-- Pied de page -->
     <footer class="main-footer">
@@ -129,5 +156,47 @@
             &copy; 2024 Projet Logement | Tous droits réservés
         </div>
     </footer>
+
+    <script src="auth.js"></script>
+    <script src="main.js"></script>
+    <script src="chatbot.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // --- Contact Form ---
+            const form = document.getElementById('contact-form');
+            const messageContainer = document.getElementById('message-container');
+
+            form.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                messageContainer.textContent = '';
+                messageContainer.style.color = 'red';
+
+                const formData = new FormData(form);
+                const data = Object.fromEntries(formData.entries());
+
+                try {
+                    const response = await fetch('http://localhost:3000/api/contacts', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify(data)
+                    });
+
+                    const result = await response.json();
+
+                    if (response.ok && result.success) {
+                        messageContainer.style.color = 'green';
+                        messageContainer.textContent = result.message;
+                        form.reset();
+                    } else {
+                        messageContainer.textContent = result.message || 'Une erreur est survenue.';
+                    }
+                } catch (error) {
+                    messageContainer.textContent = 'Erreur de connexion au serveur.';
+                }
+            });
+        });
+    </script>
 </body>
 </html>

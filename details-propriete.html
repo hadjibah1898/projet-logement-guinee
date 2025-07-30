@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Colocation - Projet Logement</title>
+    <title>Détails de la propriété</title>
     <link rel="stylesheet" href="style.css">
 </head>
-<body data-property-type="Colocation">
+<body>
     <!-- En-tête -->
     <header class="main-header">
         <a href="index.html" class="logo" aria-label="Page d'accueil - Projet Logement">
@@ -30,17 +30,10 @@
         </div>
     </header>
 
-    <main>
-        <h1 class="page-title">Nos Offres de Colocation</h1>
-
-        <section class="add-listing-section">
-            <p>Vous avez une chambre ou un appartement à proposer en colocation ? Publiez votre annonce ici.</p>
-            <a href="formulairepublication.html?transaction=colocation" class="add-listing-btn">Ajouter une annonce</a>
-        </section>
-
-        <!-- Ce conteneur sera rempli dynamiquement par JavaScript -->
-        <div class="listings-container" id="listings-container">
-            <!-- Le contenu sera injecté ici par listings.js -->
+    <main class="property-details-page">
+        <div id="details-container">
+            <!-- Le contenu sera injecté ici par JavaScript -->
+            <p class="page-intro" style="text-align: center;">Chargement des détails de la propriété...</p>
         </div>
     </main>
 
@@ -83,6 +76,6 @@
 
     <script src="auth.js"></script>
     <script src="main.js"></script>
-    <script src="listings.js"></script>
+    <script src="details.js"></script>
 </body>
 </html>
