@@ -18,7 +18,31 @@ const userSchema = new Schema({
     password: {
         type: String,
         required: [true, 'Le mot de passe est requis.']
-
+    },
+    phone: {
+        type: String,
+        trim: true
+    },
+    role: {
+        type: String,
+        enum: ['user', 'agent', 'admin'],
+        default: 'user'
+    },
+    agentProfile: {
+        agencyName: { type: String, trim: true },
+        experience: { type: Number, min: 0 },
+        specialization: { type: String, trim: true },
+        bio: { type: String, trim: true, maxlength: 500 }
+    },
+    // Nouveau champ pour gérer le processus de candidature
+    agentApplicationStatus: {
+        type: String,
+        enum: ['none', 'pending', 'approved', 'rejected'],
+        default: 'none'
+    },
+    favorites: {
+        type: [{ type: Schema.Types.ObjectId, ref: 'Property' }],
+        default: []
     }
 }, {
     timestamps: true // Ajoute les champs createdAt et updatedAt

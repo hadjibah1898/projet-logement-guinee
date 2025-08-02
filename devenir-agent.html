@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Devenir Agent - Projet Logement</title>
+    <link rel="stylesheet" href="style.css"> <!-- Assumant un fichier de style commun -->
+</head>
+<body>
+    <header class="main-header">
+        <div class="container">
+            <!-- Le contenu du header (logo, nav) sera probablement géré par un script ou un include -->
+            <div class="header-actions">
+                <!-- Géré par auth.js -->
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="form-section" style="max-width: 600px; margin: 40px auto; padding: 20px;">
+            <h1 class="page-title">Devenir un Agent MDA</h1>
+            <p class="page-intro">
+                Rejoignez notre réseau d'agents et publiez des annonces pour vos clients.
+                Veuillez fournir votre numéro de téléphone et, si vous le souhaitez, quelques informations professionnelles pour enrichir votre profil.
+            </p>
+            <div id="message-container"></div>
+            <form id="become-agent-form" class="styled-form">
+                <div class="form-group">
+                    <label for="phone">Numéro de téléphone</label>
+                    <input type="tel" id="phone" name="phone" required placeholder="Ex: 620123456" pattern="^6[01256]\d{7}$" title="Le numéro doit commencer par 6 et contenir 9 chiffres.">
+                    <small>Format guinéen, 9 chiffres, sans indicatif. Ce numéro sera visible sur vos annonces.</small>
+                </div>
+                <div class="form-group">
+                    <label for="agencyName">Nom de votre agence (optionnel)</label>
+                    <input type="text" id="agencyName" name="agencyName" placeholder="Ex: Immo Express">
+                </div>
+                <div class="form-group">
+                    <label for="experience">Années d'expérience (optionnel)</label>
+                    <input type="number" id="experience" name="experience" min="0" placeholder="Ex: 5">
+                </div>
+                <div class="form-group">
+                    <label for="specialization">Spécialisation (optionnel)</label>
+                    <input type="text" id="specialization" name="specialization" placeholder="Ex: Villas de luxe, Terrains">
+                </div>
+                <div class="form-group">
+                    <label for="bio">Courte biographie (optionnel)</label>
+                    <textarea id="bio" name="bio" rows="4" placeholder="Présentez-vous brièvement à vos futurs clients..." maxlength="500"></textarea>
+                    <small>Maximum 500 caractères.</small>
+                </div>
+                <button type="submit" class="form-btn">Confirmer et devenir agent</button>
+            </form>
+        </section>
+    </main>
+
+    <script src="auth.js"></script>
+    <script src="devenir-agent.js"></script>
+</body>
+</html>

@@ -169,20 +169,24 @@
 <body>
     <!-- En-tête (identique aux autres pages) -->
     <header class="main-header">
-        <a href="index.html" class="logo">
-            <img src="logo.png" alt="Logo de l'entreprise">
+        <a href="index.html" class="logo" aria-label="Page d'accueil - Projet Logement">
+            <img src="image/logo.png" alt="Logo de l'entreprise">
         </a>
-        <nav class="main-nav">
-            <ul>
-                <li><a href="index.html">Accueil</a></li>
-                <li><a href="a-vendre.html">À Vendre</a></li>
-                <li><a href="louyer.html">À Louer</a></li>
-                <li><a href="contact.html">Contact</a></li>
-                <li><a href="service.html">Service</a></li>
+        <nav class="main-nav" aria-label="Navigation principale">
+            <button class="nav-toggle" aria-label="Ouvrir le menu de navigation" aria-expanded="false" aria-controls="nav-menu">
+                <span class="hamburger"></span>
+            </button>
+            <ul class="nav-menu" id="nav-menu">
+                <li><a href="index.html" class="nav-link">Accueil</a></li>
+                <li><a href="a-vendre.html" class="nav-link"> Vendre</a></li>
+                <li><a href="louyer.html" class="nav-link"> Louer</a></li>
+                <li><a href="colocation.html" class="nav-link">Colocation</a></li>
+                <li><a href="service.html" class="nav-link">Service</a></li>
+                <li><a href="contact.html" class="nav-link">Contact</a></li>
             </ul>
         </nav>
         <div class="header-actions">
-            <a href="connexion.html">Inscription</a>
+            <!-- Rempli dynamiquement par auth.js -->
         </div>
     </header>
 
@@ -297,6 +301,8 @@
         </div>
     </footer>
 
+    <script src="auth.js"></script>
+    <script src="main.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const slides = document.querySelectorAll('.gallery-slide');

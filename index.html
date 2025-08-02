@@ -19,8 +19,8 @@
             </button>
             <ul class="nav-menu" id="nav-menu">
                 <li><a href="index.html" class="nav-link active" aria-current="page">Accueil</a></li>
-                <li><a href="a-vendre.html" class="nav-link">À Vendre</a></li>
-                <li><a href="louyer.html" class="nav-link">À Louer</a></li>
+                <li><a href="a-vendre.html" class="nav-link">Vendre</a></li>
+                <li><a href="louyer.html" class="nav-link"> Louer</a></li>
                 <li><a href="colocation.html" class="nav-link">Colocation</a></li>
                 <li><a href="service.html" class="nav-link">Service</a></li>
                 <li><a href="contact.html" class="nav-link">Contact</a></li>
@@ -103,17 +103,21 @@
         </section>
 
         <section class="students-incentives">
-            <div class="container">
-                <h2 class="section-title">Étudiants, trouvez votre logement idéal près de votre université !</h2>
-                <p>Vous êtes nouvellement orienté par une université publique guinéenne ? Logement vous accompagne dans votre recherche de logement étudiant ou de colocation, près de votre campus. Simplifiez votre installation et concentrez-vous sur vos études !</p>
-                <img src="etudiants.jpg" alt="Étudiants cherchant un logement" style="width: 100%; max-width: 400px; margin: 20px auto; display: block;">
-                <ul>
-                    <li><i class="fas fa-check-circle"></i> Annonces proches des universités guinéennes</li>
-                    <li><i class="fas fa-check-circle"></i> Colocations étudiantes vérifiées</li>
-                    <li><i class="fas fa-check-circle"></i> Options pour tous les budgets</li>
-                    <li><i class="fas fa-check-circle"></i> Assistance personnalisée pour votre recherche</li>
-                </ul>
-                <a href="inscription.html" class="cta-button">Rejoignez la communauté étudiante</a>
+            <div class="container"> <!-- Ce conteneur est maintenant un flex-container grâce au CSS -->
+                <div class="text-content">
+                    <h2 class="section-title" style="text-align: left;">Étudiants, trouvez votre logement idéal près de votre université !</h2>
+                    <p>Vous êtes nouvellement orienté par une université publique guinéenne ? Logement vous accompagne dans votre recherche de logement étudiant ou de colocation, près de votre campus. Simplifiez votre installation et concentrez-vous sur vos études !</p>
+                    <ul>
+                        <li><i class="fas fa-check-circle"></i> Annonces proches des universités guinéennes</li>
+                        <li><i class="fas fa-check-circle"></i> Colocations étudiantes vérifiées</li>
+                        <li><i class="fas fa-check-circle"></i> Options pour tous les budgets</li>
+                        <li><i class="fas fa-check-circle"></i> Assistance personnalisée pour votre recherche</li>
+                    </ul>
+                    <a href="etudiants.html" class="cta-button">Découvrir les offres étudiantes</a>
+                </div>
+                <div class="image-content">
+                    <img src="image/etudiants.jpg" alt="Étudiants cherchant un logement">
+                </div>
             </div>
         </section>
 
@@ -157,7 +161,7 @@
                 <!-- Annonce 3: Colocation -->
                 <div class="property-card">
                     <span class="property-id">Réf: C001</span>
-                    <img src="image/WhatsApp Image 2025-07-26 à 21.15.10_d51395fd.jpg">
+                    <img src="image/WhatsApp Image 2025-07-26 à 21.15.10_d51395fd.jpg" alt="chambre">
                     <div class="property-details">
                         <h3>Chambre meublée dans grand T4</h3>
                         <p class="property-location">Conakry, Kipé</p>

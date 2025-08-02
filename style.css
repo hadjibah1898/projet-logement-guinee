@@ -7,6 +7,7 @@
     --text-color-light: #ecf0f1;
     --text-color-dark: #333;
     --text-color-muted: #555;
+    --text-color-on-gradient: #1a2530; /* Couleur de texte très sombre pour un contraste élevé sur les dégradés */
     --background-color-light: #f9f9f9;
     --background-color-white: #fff;
     --border-color: #ccc;
@@ -16,18 +17,6 @@ body {
     font-family: sans-serif;
     margin: 0;
     background-color: var(--background-color-light);
-}
-
-/* Ajoutez ceci à votre fichier style.css */
-.gallery-slide {
-    display: none;
-    width: 100%;
-    height: 100%;
-    transition: opacity 0.5s ease-in-out;
-}
-
-.gallery-slide.active {
-    display: block;
 }
 /* Classe pour l'accessibilité : cacher visuellement mais garder pour les lecteurs d'écran */
 .sr-only {
@@ -49,6 +38,7 @@ body {
     padding: 10px 40px;
     background: linear-gradient(to right, #4d95dd, #bacce0); /* Dégradé linéaire ajouté */
     border-bottom: 1px solid #dee2e6;
+    position: relative; /* Contexte de positionnement pour le menu mobile */
 }
 
 .main-header .logo img {
@@ -71,7 +61,7 @@ body {
 
 .main-nav a {
     text-decoration: none;
-    color: var(--text-color-dark);
+    color: var(--text-color-on-gradient);
     font-weight: bold;
     padding: 5px 10px;
 }
@@ -91,20 +81,39 @@ body {
     gap: 20px;
 }
 
+.header-actions .admin-link {
+    text-decoration: none;
+    color: white;
+    background-color: var(--secondary-color);
+    padding: 10px 15px;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+
+.header-actions .admin-link:hover {
+    background-color: var(--secondary-color-light);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
 .header-actions .login-link {
     text-decoration: none;
-    color: var(--text-color-dark);
+    color: var(--text-color-on-gradient);
     font-weight: bold;
+    padding: 8px 13px; /* Padding ajusté pour aligner avec le bouton d'inscription */
+    border: 2px solid var(--text-color-on-gradient);
+    border-radius: 5px;
+    background-color: transparent;
+    transition: all 0.3s ease;
 }
 
 .header-actions .login-link:hover {
-    color: var(--primary-color);
+    background-color: var(--text-color-on-gradient);
+    color: var(--background-color-white);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
 }
-
-.header-actions .login-link.active {
-    color: var(--primary-color);
-}
-
 
 .header-actions .signup-btn {
     text-decoration: none;
@@ -112,20 +121,37 @@ body {
     background-color: var(--primary-color);
     padding: 10px 15px;
     border-radius: 5px;
-
     font-weight: bold;
-    transition: background-color 0.3s;
+    transition: all 0.3s ease;
 }
 
 .header-actions .signup-btn:hover {
     background-color: var(--primary-color-dark);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
 
+.header-actions .logout-btn {
+    text-decoration: none;
+    color: #dc3545;
+    font-weight: bold;
+    padding: 8px 13px;
+    border: 2px solid #dc3545;
+    border-radius: 5px;
+    background-color: transparent;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.header-actions .logout-btn:hover {
+    background-color: #dc3545;
+    color: white;
 }
 
 /* === FOOTER === */
 .main-footer {
-    background-color: #2c3e50;
-    color: #ecf0f1;
+    background: linear-gradient(to right, #4d95dd, #bacce0); /* Identique au header */
+    color: var(--text-color-on-gradient); /* Texte très sombre pour la lisibilité */
     padding-top: 20px;
 }
 
@@ -146,8 +172,8 @@ body {
 .footer-section h4 {
     font-size: 18px;
     margin-bottom: 15px;
-    color: white;
-    border-bottom: 1px solid #34495e;
+    color: var(--text-color-on-gradient);
+    border-bottom: 1px solid var(--primary-color); /* Bordure assortie */
     padding-bottom: 10px;
     display: inline-block;
 }
@@ -158,7 +184,7 @@ body {
 }
 
 .footer-section ul li a {
-    color: #ecf0f1;
+    color: var(--text-color-on-gradient);
     text-decoration: none;
     display: block;
     margin-bottom: 10px;
@@ -166,12 +192,12 @@ body {
 }
 
 .footer-section ul li a:hover {
-    color: #3498db;
+    color: var(--primary-color);
 }
 
 .footer-section p {
     line-height: 1.6;
-    color: #bdc3c7;
+    color: var(--text-color-on-gradient);
 }
 
 .footer-section .contact-info li {
@@ -185,7 +211,7 @@ body {
 
 .social-links a {
     margin-right: 15px;
-    color: #ecf0f1;
+    color: var(--text-color-on-gradient);
     text-decoration: none;
 }
 
@@ -194,6 +220,7 @@ body {
     padding: 15px;
     background-color: #233140;
     font-size: 14px;
+    color: var(--text-color-light); /* Assurer la lisibilité sur fond sombre */
 }
 
 /* === CONTENU GÉNÉRIQUE === */
@@ -689,11 +716,12 @@ body {
 .advanced-search-form input,
 .advanced-search-form select {
     width: 100%;
-    padding: 10px;
+    padding: 12px;
     border: 1px solid #ccc;
-    border-radius: 4px;
+    border-radius: 6px;
     box-sizing: border-box;
-    height: 40px; /* Hauteur fixe pour alignement */
+    height: 44px; /* Hauteur fixe pour alignement */
+    font-size: 1em;
 }
 
 .min-max-inputs {
@@ -703,26 +731,29 @@ body {
 
 .search-btn {
     flex-basis: 150px;
+    flex-grow: 1; /* Permet au bouton de grandir si nécessaire */
     padding: 10px;
     background-color: #007bff;
     color: white;
     border: none;
-    border-radius: 4px;
+    border-radius: 6px;
     font-size: 16px;
     font-weight: bold;
     cursor: pointer;
-    transition: background-color 0.3s;
-    height: 40px; /* Aligner avec les inputs */
+    transition: background-color 0.3s, transform 0.2s;
+    height: 44px; /* Aligner avec les inputs */
 }
 
 .search-btn:hover {
     background-color: #0056b3;
+    transform: translateY(-2px);
 }
 
 /* === FEATURED LISTINGS (Homepage) === */
 .featured-listings {
     padding: 60px 40px;
     background-color: #fff;
+    position: relative; /* Pour les flèches du slider */
 }
 
 .section-title {
@@ -828,10 +859,6 @@ body {
 .bot-message { background-color: #e9e9eb; align-self: flex-start; border-bottom-left-radius: 2px; }
 .user-message { background-color: #007bff; color: white; align-self: flex-end; border-bottom-right-radius: 2px; }
 
-#chatbot-input {
-    /* Remplacé par .chatbot-input-area */
-}
-
 .chatbot-input-area {
     display: flex;
     padding: 10px;
@@ -899,7 +926,7 @@ body {
 /* === WHY CHOOSE US === */
 .why-choose-us {
     padding: 60px 40px;
-    background-color: #fff;
+    background-color: var(--background-color-light);
 }
 
 .features-container {
@@ -913,121 +940,231 @@ body {
 
 .feature-card {
     flex: 1 1 300px;
-    background-color: #f9f9f9;
+    background-color: var(--background-color-white);
     padding: 30px;
     border-radius: 8px;
     text-align: center;
-    border-top: 4px solid #007bff;
+    border: 1px solid #e9ecef;
     box-shadow: 0 4px 15px rgba(0,0,0,0.05);
     transition: transform 0.3s, box-shadow 0.3s;
 }
 
 .feature-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+    transform: translateY(-8px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
 }
 
 .feature-icon {
-    font-size: 2.5em;
-    color: #007bff;
+    font-size: 3em;
+    color: var(--primary-color);
     margin-bottom: 20px;
+    background-color: #e7f3ff;
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .feature-card h3 {
-    font-size: 1.4em;
-    color: #2c3e50;
+    font-size: 1.5em;
+    color: var(--secondary-color);
     margin-bottom: 10px;
 }
 
 .student-search-container {
-    background-color: #f8f8f8;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    margin-bottom: 20px;
+    padding: 60px 40px;
+    background-color: #fff;
 }
 
-.university-dropdown, .search-bar, .search-filters {
-    margin-bottom: 15px;
-}
-
-.university-dropdown label, .search-filters label {
-    display: block;
-    margin-bottom: 5px;
-    font-weight: bold;
-}
-
-.university-dropdown select, .search-bar input[type="text"], .search-filters input[type="number"], .search-filters select {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    box-sizing: border-box;
-    font-size: 1em;
-}
-
-.search-bar input[type="text"] {
-    margin-right: 10px;
-}
-
-.search-bar button {
-    background-color: #007bff;
-    color: white;
-    padding: 10px 15px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 1em;
-}
-
-.search-filters {
+.students-incentives .container {
     display: flex;
-    gap: 10px;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 40px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.students-incentives .text-content {
+    flex: 1 1 50%;
+}
+
+.students-incentives .image-content {
+    flex: 1 1 40%;
+    text-align: center;
+}
+
+.students-incentives img {
+    width: 100%;
+    max-width: 450px;
+    border-radius: 10px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+}
+
+.students-incentives ul {
+    list-style: none;
+    padding: 0;
+    margin: 20px 0;
+}
+
+.students-incentives li {
+    margin-bottom: 10px;
+    font-size: 1.1em;
+    display: flex;
     align-items: center;
 }
 
-.search-filters label {
-    margin: 0;
+.students-incentives li i {
+    color: var(--primary-color);
+    margin-right: 10px;
 }
 
-@media (max-width: 600px) {
-    .search-filters {
-        flex-direction: column;
-        align-items: flex-start;
-    }
+/* === JOIN US CTA === */
+.join-us-cta {
+    padding: 60px 40px;
+    background-color: var(--background-color-light);
+    text-align: center;
 }
+
+.benefits-container {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    flex-wrap: wrap;
+    max-width: 1200px;
+    margin: 40px auto;
+}
+
+.benefit-item {
+    flex: 1 1 300px;
+    text-align: center;
+}
+
+.benefit-icon {
+    font-size: 2.5em;
+    color: var(--primary-color);
+    margin-bottom: 15px;
+}
+
+.benefit-item h3 {
+    font-size: 1.4em;
+    color: var(--secondary-color);
+    margin-bottom: 10px;
+}
+
+/* === GENERIC CTA BUTTONS === */
+.cta-button, .cta-button-green {
+    display: inline-block;
+    padding: 12px 25px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1.1em;
+    transition: all 0.3s ease;
+    border: none;
+    cursor: pointer;
+    margin-top: 20px;
+}
+
+.cta-button {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+.cta-button:hover {
+    background-color: var(--primary-color-dark);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+}
+
+/* === BOUTON HAMBURGER (base) === */
+.nav-toggle {
+    display: none; /* Caché par défaut sur les grands écrans */
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 10px;
+    z-index: 1001; /* S'assurer qu'il est au-dessus des autres éléments du header */
+    order: 3; /* Pour le placer après les actions si nécessaire */
+}
+
+.cta-button-green {
+    background-color: #28a745;
+    color: white;
+}
+
+.cta-button-green:hover {
+    background-color: #218838;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+}
+
+/* === BOUTON HAMBURGER (complet) === */
+.nav-toggle .hamburger,
+.nav-toggle .hamburger::before,
+.nav-toggle .hamburger::after {
+    content: '';
+    display: block;
+    width: 25px;
+    height: 3px;
+    background-color: var(--secondary-color);
+    border-radius: 3px;
+    transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+}
+
+.nav-toggle .hamburger::before {
+    transform: translateY(-8px);
+}
+
+.nav-toggle .hamburger::after {
+    transform: translateY(5px); /* Ajusté pour être symétrique */
+}
+
+/* Animation du bouton en croix (X) */
+.nav-toggle.is-active .hamburger {
+    background-color: transparent; /* La barre du milieu disparaît */
+}
+
+.nav-toggle.is-active .hamburger::before {
+    transform: translateY(0) rotate(45deg);
+}
+
+.nav-toggle.is-active .hamburger::after {
+    transform: translateY(-3px) rotate(-45deg);
+}
+
 
 /* === RESPONSIVE NAVIGATION (Hamburger Menu) === */
 @media (max-width: 850px) {
-    .main-nav .nav-menu {
+    .main-nav {
+        order: 4; /* Pour le placer en dernier dans le flex container */
+    }
+
+    .main-nav ul { /* C'est le conteneur du menu */
         display: none;
         position: absolute;
         top: 100%;
         left: 0;
         width: 100%;
-        background-color: white;
+        background-color: var(--background-color-white);
         flex-direction: column;
         padding: 10px 0;
         box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        z-index: 1000;
     }
 
-    .main-nav .nav-menu.is-active {
+    .main-nav ul.is-active {
         display: flex;
     }
 
-    .main-nav .nav-link {
+    .main-nav a {
         padding: 15px 20px;
         width: 100%;
         box-sizing: border-box;
         text-align: center;
-    }
-
-    .nav-toggle {
-        display: block; /* S'affiche uniquement sur les petits écrans */
-        background: none;
-        border: none;
-        font-size: 24px;
-        cursor: pointer;
+        border-bottom: 1px solid #f0f0f0;
     }
 }
 
@@ -1224,24 +1361,6 @@ body {
     box-shadow: 0 8px 25px rgba(0,0,0,0.12);
 }
 
-.service-icon {
-    font-size: 3em;
-    color: #007bff;
-    margin-bottom: 20px;
-}
-
-.service-item h3 {
-    font-size: 1.5em;
-    color: #2c3e50;
-    margin-bottom: 15px; }
-
-/* === PROPERTY DETAILS PAGE === */
-.property-details-page {
-    max-width: 1100px;
-    margin: 40px auto;
-    padding: 0 20px;
-}
-
 .main-gallery-slider {
     position: relative;
     width: 100%;
@@ -1253,28 +1372,10 @@ body {
     background-color: #eee; /* Placeholder background */
 }
 
-.gallery-slide {
-    display: none;
-    width: 100%;
-    height: 100%;
-    transition: opacity 0.5s ease-in-out;
-}
-
-.gallery-slide.active {
-    display: block;
-}
-
 .gallery-slide img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-}
-
-.slider-arrow {
-    background-color: var(--background-color-white);
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
 }
 
 #user-info-card p {
@@ -1343,18 +1444,173 @@ body {
 .btn-action.delete { background-color: #dc3545; color: white; }
 .btn-action.delete:hover { background-color: #c82333; }
 
+/* === PAGE PROFIL === */
+.profile-header {
+    background: linear-gradient(to right, var(--primary-color), #56a1f1);
+    color: var(--text-color-light);
+    padding: 40px 20px;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+#profile-welcome {
+    font-size: 2.5em;
+    font-weight: 700;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+    margin: 0;
+}
+
+.profile-content-grid {
+    display: grid;
+    grid-template-columns: 300px 1fr;
+    gap: 30px;
+    max-width: 1400px;
+    margin: 0 auto 40px auto;
+    padding: 0 20px;
+}
+
+.profile-sidebar,
+.profile-main-content {
+    background-color: var(--background-color-white);
+    padding: 25px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+.profile-sidebar h2,
+.profile-main-content h2 {
+    font-size: 1.6em;
+    color: var(--secondary-color);
+    margin-top: 0;
+    margin-bottom: 20px;
+    border-bottom: 2px solid #eee;
+    padding-bottom: 10px;
+}
+
+.info-card {
+    background-color: #f8f9fa;
+    padding: 20px;
+    border-radius: 6px;
+    border: 1px solid #e9ecef;
+}
+
+.agent-badge {
+    text-align: center;
+    margin-top: 20px;
+    color: #28a745;
+    font-weight: bold;
+    background-color: #d4edda;
+    padding: 8px;
+    border-radius: 4px;
+}
+
+.agent-badge.pending {
+    color: #856404; /* Jaune foncé */
+    background-color: #fff3cd; /* Jaune clair */
+}
+
+.agent-profile-details {
+    margin-top: 20px;
+    padding-top: 15px;
+    border-top: 1px solid #e9ecef;
+}
+
+.agent-profile-details h4 {
+    margin-top: 0;
+    margin-bottom: 10px;
+    color: var(--secondary-color-light);
+}
+
+.agent-profile-details p {
+    font-size: 0.95em;
+}
+
+.profile-section {
+    margin-bottom: 40px;
+}
+
+/* Styles pour les annonces de l'utilisateur sur son profil (en liste) */
+#my-listings-container {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+/* Pour les favoris, on réutilise le style de grille standard */
+#my-favorites-container .property-card {
+    flex-direction: column; /* Revenir à l'affichage en colonne pour les favoris */
+}
+
+/* Responsive pour la page profil */
 @media (max-width: 900px) {
-    .profile-content {
+    .profile-content-grid {
         grid-template-columns: 1fr;
     }
 }
 
 @media (max-width: 600px) {
-    .my-listing-card { flex-direction: column; align-items: stretch; }
-    .my-listing-card img { width: 100%; height: 180px; }
-    .my-listing-card .property-details { padding: 20px; }
-    .my-listing-actions { margin-left: 0; padding: 0 20px 20px 20px; justify-content: space-between; }
+    .my-listing-card {
+        flex-direction: column;
+        align-items: stretch;
+        text-align: center;
+    }
+    .my-listing-card img {
+        width: 100%;
+        height: 180px;
+    }
+    .my-listing-actions {
+        margin-left: 0;
+        justify-content: space-around;
+    }
 }
+
+/* === MODAL STYLES === */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    display: none; /* Changé par JS */
+    justify-content: center;
+    align-items: center;
+    z-index: 1001;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+}
+
+.modal-overlay.is-visible {
+    display: flex;
+    opacity: 1;
+}
+
+.modal-content {
+    background-color: var(--background-color-white);
+    padding: 30px 40px;
+    border-radius: 8px;
+    width: 90%;
+    max-width: 500px;
+    position: relative;
+    transform: translateY(-20px);
+    transition: transform 0.3s ease-in-out;
+}
+
+.modal-overlay.is-visible .modal-content {
+    transform: translateY(0);
+}
+
+.modal-close {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    background: none;
+    border: none;
+    font-size: 28px;
+    cursor: pointer;
+    color: #aaa;
+}
+@media (max-width: 900px) {
     /* Dans style.css */
     .students-incentives img {
         width: 100%;
@@ -1387,16 +1643,11 @@ body {
     
 
 .slider-arrow.prev-slide {
-    left: 0;
-    border-radius: 3px 0 0 3px;
+    left: 15px;
 }
 
 .slider-arrow.next-slide {
-    right: 0;
-}
-
-.slider-arrow:hover {
-    background-color: rgba(0,0,0,0.6);
+    right: 15px;
 }
 
 .slide-counter {
@@ -1507,21 +1758,31 @@ body {
     }
 }
 
-/* === PROPERTY DETAILS PAGE === */
-.property-details-page {
-    max-width: 1100px;
-    margin: 40px auto;
-    padding: 0 20px;
+/* === SLIDER ARROWS (Generic) === */
+.slider-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(255, 255, 255, 0.8);
+    border: none;
+    color: var(--text-color-dark);
+    font-size: 24px;
+    padding: 10px;
+    cursor: pointer;
+    z-index: 10;
+    transition: background-color 0.3s, color 0.3s;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
 }
 
-.main-gallery-slider {
-    position: relative;
-    width: 100%;
-    height: 550px;
-    overflow: hidden;
-    border-radius: 8px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-    margin-bottom: 30px;
+.slider-arrow:hover {
+    background-color: var(--primary-color);
+    color: white;
 }
 
 .gallery-slide {
@@ -1540,3 +1801,220 @@ body {
     height: 100%;
     object-fit: cover;
 }
+
+/* === PAGE TERMES & CONDITIONS === */
+.terms-container {
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 30px 40px;
+    background-color: var(--background-color-white);
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    line-height: 1.7;
+    color: var(--text-color-dark);
+}
+
+.terms-container h2 {
+    color: var(--secondary-color);
+    border-bottom: 2px solid #eee;
+    padding-bottom: 10px;
+    margin-top: 30px;
+    margin-bottom: 15px;
+}
+
+.terms-container h2:first-of-type {
+    margin-top: 0;
+}
+
+.terms-container ul {
+    list-style-position: inside;
+    padding-left: 10px;
+}
+
+.terms-container li {
+    margin-bottom: 10px;
+}
+
+/* === RESPONSIVE DESIGN (HOMEPAGE & GLOBAL) === */
+
+/* -- Tablet & Smaller Desktops -- */
+@media (max-width: 1024px) {
+    .hero-content h1 {
+        font-size: 3em;
+    }
+    .hero-content p {
+        font-size: 1.2em;
+    }
+    .advanced-search-form {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 10px;
+    }
+    .advanced-search-form .form-group,
+    .advanced-search-form .search-btn {
+        flex-basis: auto;
+    }
+    .students-incentives .container {
+        flex-direction: column;
+        text-align: center;
+    }
+}
+
+/* -- Mobile Devices -- */
+@media (max-width: 768px) {
+    /* General Padding & Font Size */
+    body {
+        font-size: 15px;
+    }
+    .main-header, .footer-content, .listings-container, .contact-wrapper, .map-container {
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+    .featured-listings, .why-choose-us, .student-search-container, .join-us-cta, .how-it-works, .testimonials, .partners, .cta-section, .services-container {
+        padding-top: 40px;
+        padding-bottom: 40px;
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+
+    /* Header */
+    .main-header {
+        padding: 10px 20px;
+    }
+    .main-header .logo img {
+        height: 65px;
+    }
+    .header-actions {
+        gap: 10px;
+    }
+    .header-actions .login-link {
+        display: none; /* On cache le lien de connexion pour simplifier, le bouton d'inscription est prioritaire */
+    }
+    .header-actions .signup-btn {
+        padding: 8px 12px;
+        font-size: 0.9em;
+    }
+
+    /* Hero Section */
+    .hero {
+        height: auto;
+        min-height: 60vh;
+        padding: 40px 0;
+    }
+    .hero-content h1 {
+        font-size: 2.2em;
+    }
+    .hero-content p {
+        font-size: 1.1em;
+    }
+    .search-form-container {
+        padding: 15px;
+    }
+
+    /* Section Titles */
+    .section-title {
+        font-size: 1.8em;
+        margin-bottom: 30px;
+    }
+
+    /* Cards (Listings, Features, Steps, etc.) */
+    .listings-container {
+        grid-template-columns: 1fr; /* Une seule colonne sur mobile */
+        gap: 20px;
+    }
+    .features-container, .steps-container, .testimonials-container, .benefits-container {
+        flex-direction: column;
+        gap: 25px;
+    }
+
+    /* Footer */
+    .footer-content {
+        flex-direction: column;
+        text-align: center;
+    }
+    .footer-section {
+        margin: 15px 0;
+    }
+    .footer-section h4 {
+        display: block; /* Pour que la bordure prenne toute la largeur */
+    }
+
+    /* CTA Section */
+    .cta-content h2 {
+        font-size: 2em;
+    }
+}
+
+/* === PAGE ADMINISTRATION === */
+.admin-page-container {
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 20px 40px;
+}
+
+.admin-page-container h1 {
+    text-align: center;
+    margin-bottom: 10px;
+    color: var(--secondary-color);
+}
+
+.admin-page-container .page-intro {
+    margin-bottom: 30px;
+}
+
+#admin-message-container { margin-bottom: 20px; }
+
+#applications-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.application-card {
+    background-color: var(--background-color-white);
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+    padding: 25px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.application-details {
+    flex: 3 1 400px;
+}
+
+.application-details h3 {
+    margin-top: 0;
+    margin-bottom: 15px;
+    color: var(--secondary-color-light);
+}
+
+.application-details p {
+    margin: 5px 0;
+    line-height: 1.6;
+}
+
+.application-details hr {
+    border: 0;
+    border-top: 1px solid #eee;
+    margin: 15px 0;
+}
+
+.application-card .action-buttons {
+    flex: 1 1 150px;
+    display: flex;
+    gap: 10px;
+    justify-content: flex-end;
+}
+
+.btn-action.approve { background-color: #28a745; color: white; }
+.btn-action.approve:hover { background-color: #218838; }
+
+.btn-action.reject { background-color: #dc3545; color: white; }
+.btn-action.reject:hover { background-color: #c82333; }
+
+/* Responsive pour la page admin */
+@media (max-width: 700px) {

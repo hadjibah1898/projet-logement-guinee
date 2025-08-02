@@ -3,10 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Résultats de recherche - Projet Logement</title>
+    <title>Administration - Gestion des Annonces</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <!-- En-tête (identique aux autres pages) -->
     <header class="main-header">
         <a href="index.html" class="logo" aria-label="Page d'accueil - Projet Logement">
             <img src="image/logo.png" alt="Logo de l'entreprise">
@@ -17,7 +18,7 @@
             </button>
             <ul class="nav-menu" id="nav-menu">
                 <li><a href="index.html" class="nav-link">Accueil</a></li>
-                <li><a href="a-vendre.html" class="nav-link"> Vendre</a></li>
+                <li><a href="a-vendre.html" class="nav-link">Vendre</a></li>
                 <li><a href="louyer.html" class="nav-link"> Louer</a></li>
                 <li><a href="colocation.html" class="nav-link">Colocation</a></li>
                 <li><a href="service.html" class="nav-link">Service</a></li>
@@ -25,41 +26,24 @@
             </ul>
         </nav>
         <div class="header-actions">
-            <!-- Dynamically filled by auth.js -->
+            <!-- Rempli dynamiquement par auth.js -->
         </div>
     </header>
 
-    <main>
-        <h1 class="page-title">Résultats de votre recherche</h1>
-        <p class="page-intro" id="results-intro">Affichage des annonces correspondant à vos critères.</p>
+    <main class="admin-page-container">
+        <h1>Annonces en attente de validation</h1>
+        <p class="page-intro">Examinez les nouvelles annonces soumises par les utilisateurs et approuvez ou rejetez-les.</p>
 
-        <div class="listings-container" id="listings-container">
-            <!-- Le contenu sera injecté ici par listings.js -->
+        <div id="admin-message-container"></div>
+
+        <div id="listings-to-review" class="applications-list">
+            <!-- Les annonces en attente seront chargées ici par admin-listings.js -->
+            <p>Chargement des annonces en attente...</p>
         </div>
     </main>
 
+    <!-- Pied de page (identique aux autres pages) -->
     <footer class="main-footer">
-        <div class="footer-content">
-            <div class="footer-section about">
-                <h4>À Propos de Nous</h4>
-                <p>Votre partenaire de confiance pour trouver la maison de vos rêves.</p>
-            </div>
-            <div class="footer-section links">
-                <h4>Liens Rapides</h4>
-                <ul>
-                    <li><a href="index.html">Accueil</a></li>
-                    <li><a href="a-vendre.html">À Vendre</a></li>
-                    <li><a href="louyer.html">À Louer</a></li>
-                </ul>
-            </div>
-            <div class="footer-section contact-social">
-                <h4>Contact & Réseaux</h4>
-                <ul class="contact-info">
-                    <li>Email: contact@logement.com</li>
-                    <li>Téléphone: +224 620 00 00 00</li>
-                </ul>
-            </div>
-        </div>
         <div class="footer-bottom">
             &copy; 2024 Projet Logement | Tous droits réservés
         </div>
@@ -67,6 +51,6 @@
 
     <script src="auth.js"></script>
     <script src="main.js"></script>
-    <script src="listings.js"></script>
+    <script src="admin-listings.js"></script>
 </body>
 </html>

@@ -18,8 +18,8 @@
             </button>
             <ul class="nav-menu" id="nav-menu">
                 <li><a href="index.html" class="nav-link">Accueil</a></li>
-                <li><a href="a-vendre.html" class="nav-link">À Vendre</a></li>
-                <li><a href="louyer.html" class="nav-link">À Louer</a></li>
+                <li><a href="a-vendre.html" class="nav-link">Vendre</a></li>
+                <li><a href="louyer.html" class="nav-link"> Louer</a></li>
                 <li><a href="colocation.html" class="nav-link">Colocation</a></li>
                 <li><a href="service.html" class="nav-link">Service</a></li>
                 <li><a href="contact.html" class="nav-link">Contact</a></li>
@@ -33,8 +33,8 @@
     <main>
         <div class="form-container">
             <h2>Devenir Agent Immobilier (MDA)</h2>
-            <p class="page-intro" style="font-size: 1em; max-width: 100%; margin-bottom: 25px;">Rejoignez notre équipe d'agents et gagnez un revenu complémentaire en nous aidant à trouver des biens immobiliers. Remplissez le formulaire ci-dessous pour postuler.</p>
-            <div id="message-container" style="margin-bottom: 15px; text-align: center;" aria-live="polite"></div>
+            <p class="page-intro">Rejoignez notre équipe d'agents et gagnez un revenu complémentaire en nous aidant à trouver des biens immobiliers. Remplissez le formulaire ci-dessous pour postuler.</p>
+            <div id="message-container" aria-live="polite"></div>
             <form id="agent-form">
                 <div class="form-group">
                     <label for="nom">Nom</label>
@@ -68,18 +68,42 @@
                     <label for="signature">Signature (nom complet en lettres capitales)</label>
                     <input type="text" id="signature" name="signature" placeholder="EX: MOUHAMAD DJOULDE OUMAR BAH" required>
                 </div>
-                <div class="checkbox-group" style="margin-bottom: 20px; display: flex; align-items: center; gap: 10px;">
+                <div class="checkbox-group">
                     <input type="checkbox" id="conditions" name="conditions" required>
-                    <label for="conditions" style="margin-bottom: 0; font-weight: normal;">
-                        J'accepte les <a href="#" target="_blank">conditions pour devenir agent</a>.
+                    <label for="conditions">
+                        J'accepte les <a href="conditions-agent.html" target="_blank">conditions pour devenir agent</a>.
                     </label>
                 </div>
-                <button type="submit" class="form-btn" style="background-color: #28a745; border-color: #28a745;">Envoyer la demande</button>
+                <button type="submit" class="form-btn form-btn-green">Envoyer la demande</button>
             </form>
         </div>
     </main>
 
     <footer class="main-footer">
+        <div class="footer-content">
+            <div class="footer-section about">
+                <h4>À Propos de Nous</h4>
+                <p>Votre partenaire de confiance pour trouver la maison de vos rêves. Nous offrons un service personnalisé pour l'achat, la vente et la location de biens immobiliers.</p>
+            </div>
+            <div class="footer-section links">
+                <h4>Liens Rapides</h4>
+                <ul>
+                    <li><a href="index.html">Accueil</a></li>
+                    <li><a href="a-vendre.html">À Vendre</a></li>
+                    <li><a href="louyer.html">À Louer</a></li>
+                    <li><a href="colocation.html">Colocation</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="service.html">Service</a></li>
+                </ul>
+            </div>
+            <div class="footer-section contact-social">
+                <h4>Contact & Réseaux</h4>
+                <ul class="contact-info">
+                    <li>Email: contact@logement.com</li>
+                    <li>Téléphone: +224 620 00 00 00</li>
+                </ul>
+            </div>
+        </div>
         <div class="footer-bottom">
             &copy; 2024 Projet Logement | Tous droits réservés
         </div>

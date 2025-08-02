@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Administration - Gestion des Agents</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- En-tête (identique aux autres pages) -->
+    <header class="main-header">
+        <a href="index.html" class="logo" aria-label="Page d'accueil - Projet Logement">
+            <img src="image/logo.png" alt="Logo de l'entreprise">
+        </a>
+        <nav class="main-nav" aria-label="Navigation principale">
+            <button class="nav-toggle" aria-label="Ouvrir le menu de navigation" aria-expanded="false" aria-controls="nav-menu">
+                <span class="hamburger"></span>
+            </button>
+            <ul class="nav-menu" id="nav-menu">
+                <li><a href="index.html" class="nav-link">Accueil</a></li>
+                <li class="dropdown">
+                    <a class="nav-link dropbtn" role="button" aria-haspopup="true" aria-expanded="false">Annonces</a>
+                    <ul class="dropdown-content">
+                        <li><a href="a-vendre.html"> Vendre</a></li>
+                        <li><a href="louyer.html"> Louer</a></li>
+                        <li><a href="colocation.html">Colocation</a></li>
+                    </ul>
+                </li>
+                <li><a href="service.html" class="nav-link">Service</a></li>
+                <li><a href="contact.html" class="nav-link">Contact</a></li>
+            </ul>
+        </nav>
+        <div class="header-actions">
+            <!-- Rempli dynamiquement par auth.js -->
+        </div>
+    </header>
+
+    <main class="admin-page-container">
+        <h1>Demandes d'agents en attente</h1>
+        <p class="page-intro">Examinez les demandes ci-dessous et choisissez de les approuver ou de les rejeter.</p>
+
+        <div id="admin-message-container"></div>
+
+        <div id="applications-list">
+            <!-- Les demandes en attente seront chargées ici -->
+            <p>Chargement des demandes...</p>
+        </div>
+    </main>
+
+    <!-- Pied de page (identique aux autres pages) -->
+    <footer class="main-footer">
+        <!-- Le contenu de votre pied de page ici -->
+    </footer>
+
+    <script src="auth.js"></script>
+    <script src="main.js"></script>
+    <script src="admin.js"></script>
+</body>
+</html>

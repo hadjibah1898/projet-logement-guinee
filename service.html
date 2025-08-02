@@ -19,8 +19,8 @@
             </button>
             <ul class="nav-menu" id="nav-menu">
                 <li><a href="index.html" class="nav-link">Accueil</a></li>
-                <li><a href="a-vendre.html" class="nav-link">À Vendre</a></li>
-                <li><a href="louyer.html" class="nav-link">À Louer</a></li>
+                <li><a href="a-vendre.html" class="nav-link"> Vendre</a></li>
+                <li><a href="louyer.html" class="nav-link">Louer</a></li>
                 <li><a href="colocation.html" class="nav-link">Colocation</a></li>
                 <li><a href="service.html" class="nav-link">Service</a></li>
                 <li><a href="contact.html" class="nav-link">Contact</a></li>
@@ -115,32 +115,6 @@
 
     <script src="auth.js"></script>
     <script src="main.js"></script>
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            // --- Animation au défilement pour les cartes de service ---
-            const animatedItems = document.querySelectorAll('.service-item');
-
-            const observerOptions = {
-                root: null, // par rapport au viewport
-                rootMargin: '0px',
-                threshold: 0.1 // se déclenche quand 10% de l'élément est visible
-            };
-
-            const animationObserver = new IntersectionObserver((entries, observer) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('is-visible');
-                        observer.unobserve(entry.target); // On arrête d'observer une fois l'animation lancée
-                    }
-                });
-            }, observerOptions);
-
-            animatedItems.forEach((item, index) => {
-                item.classList.add('fade-in-up');
-                item.style.transitionDelay = `${index * 100}ms`; // Applique un délai échelonné
-                animationObserver.observe(item);
-            });
-        });
-    </script>
+    <script src="service.js"></script>
 </body>
 </html>

@@ -14,17 +14,26 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- Indicateur de page active dans la navigation ---
     // Centralisation de la logique pour éviter la duplication dans les fichiers HTML.
-    const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+    const currentPage = window.location.pathname.split("/").pop() || "index.html";
     const navLinks = document.querySelectorAll('.main-nav .nav-link');
+    const dropdownAnnonces = ['a-vendre.html', 'louyer.html', 'colocation.html'];
 
     navLinks.forEach(link => {
         // On s'assure de retirer la classe active de tous les liens d'abord
         link.classList.remove('active');
         link.removeAttribute('aria-current');
 
-        if (link.getAttribute('href') === currentPage) {
+        const linkHref = link.getAttribute('href');
+
+        if (linkHref === currentPage) {
             link.classList.add('active');
             link.setAttribute('aria-current', 'page');
         }
     });
+
+    // Gérer le cas où une des pages du dropdown est active
+    if (dropdownAnnonces.includes(currentPage)) {
+        const annoncesBtn = document.querySelector('.dropdown .dropbtn');
+        if (annoncesBtn) annoncesBtn.classList.add('active');
+    }
 });

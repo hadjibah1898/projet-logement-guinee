@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
           integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
-<body class="contact-page-bg">
+<body class="form-page-bg">
     <!-- En-tête -->
     <header class="main-header">
         <a href="index.html" class="logo" aria-label="Page d'accueil - Projet Logement">
@@ -20,8 +20,8 @@
             </button>
             <ul class="nav-menu" id="nav-menu">
                 <li><a href="index.html" class="nav-link">Accueil</a></li>
-                <li><a href="a-vendre.html" class="nav-link">À Vendre</a></li>
-                <li><a href="louyer.html" class="nav-link">À Louer</a></li>
+                <li><a href="a-vendre.html" class="nav-link">Vendre</a></li>
+                <li><a href="louyer.html" class="nav-link"> Louer</a></li>
                 <li><a href="colocation.html" class="nav-link">Colocation</a></li>
                 <li><a href="service.html" class="nav-link">Service</a></li>
                 <li><a href="contact.html" class="nav-link">Contact</a></li>
@@ -160,43 +160,6 @@
     <script src="auth.js"></script>
     <script src="main.js"></script>
     <script src="chatbot.js"></script>
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            // --- Contact Form ---
-            const form = document.getElementById('contact-form');
-            const messageContainer = document.getElementById('message-container');
-
-            form.addEventListener('submit', async (e) => {
-                e.preventDefault();
-                messageContainer.textContent = '';
-                messageContainer.style.color = 'red';
-
-                const formData = new FormData(form);
-                const data = Object.fromEntries(formData.entries());
-
-                try {
-                    const response = await fetch('http://localhost:3000/api/contacts', {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json'
-                        },
-                        body: JSON.stringify(data)
-                    });
-
-                    const result = await response.json();
-
-                    if (response.ok && result.success) {
-                        messageContainer.style.color = 'green';
-                        messageContainer.textContent = result.message;
-                        form.reset();
-                    } else {
-                        messageContainer.textContent = result.message || 'Une erreur est survenue.';
-                    }
-                } catch (error) {
-                    messageContainer.textContent = 'Erreur de connexion au serveur.';
-                }
-            });
-        });
-    </script>
+    <script src="contact.js"></script>
 </body>
 </html>

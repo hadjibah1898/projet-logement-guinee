@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Offres Étudiantes - Projet Logement</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+    <header class="main-header">
+        <a href="index.html" class="logo" aria-label="Page d'accueil - Projet Logement">
+            <img src="image/logo.png" alt="Logo de l'entreprise">
+        </a>
+        <nav class="main-nav" aria-label="Navigation principale">
+            <button class="nav-toggle" aria-label="Ouvrir le menu de navigation" aria-expanded="false" aria-controls="nav-menu">
+                <span class="hamburger"></span>
+            </button>
+            <ul class="nav-menu" id="nav-menu">
+                <li><a href="index.html" class="nav-link">Accueil</a></li>
+                <li><a href="a-vendre.html" class="nav-link">Vendre</a></li>
+                <li><a href="louyer.html" class="nav-link"> Louer</a></li>
+                <li><a href="colocation.html" class="nav-link">Colocation</a></li>
+                <li><a href="service.html" class="nav-link">Service</a></li>
+                <li><a href="contact.html" class="nav-link">Contact</a></li>
+            </ul>
+        </nav>
+        <div class="header-actions">
+            <!-- Rempli dynamiquement par auth.js -->
+        </div>
+    </header>
+
+    <main>
+        <section class="hero" style="background-image: url('image/etudiants.jpg'); height: 50vh;">
+            <div class="hero-content">
+                <h1>Logements Étudiants Simplifiés</h1>
+                <p>Trouvez votre colocation ou studio idéal près de votre campus.</p>
+            </div>
+        </section>
+
+        <section class="why-choose-us">
+            <h2 class="section-title">Vos Avantages en tant qu'Étudiant</h2>
+            <div class="features-container">
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fas fa-university"></i></div>
+                    <h3>Proximité des Campus</h3>
+                    <p>Des annonces ciblées près des principales universités et grandes écoles de Guinée pour réduire votre temps de trajet.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fas fa-wallet"></i></div>
+                    <h3>Budgets Adaptés</h3>
+                    <p>Des offres de colocation et de studios pensées pour les budgets étudiants, sans frais cachés.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fas fa-users"></i></div>
+                    <h3>Communauté Fiable</h3>
+                    <p>Rejoignez une communauté d'étudiants et trouvez des colocataires qui partagent vos centres d'intérêt.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="join-us-cta" style="background-color: #eef2f7;">
+            <h2 class="section-title">Devenez Agent MDA et Financez vos Études</h2>
+            <p class="page-intro">
+                Même avec des résultats académiques moyens, votre motivation peut vous rapporter un revenu. Travaillez de chez vous, à votre rythme, et développez des compétences précieuses pour votre avenir.
+            </p>
+            <div class="benefits-container">
+                <div class="benefit-item">
+                    <div class="benefit-icon"><i class="fas fa-hand-holding-usd"></i></div>
+                    <h3>Revenu Flexible</h3>
+                    <p>Gagnez de l'argent en fonction de votre disponibilité, sans impacter votre emploi du temps universitaire.</p>
+                </div>
+                <div class="benefit-item">
+                    <div class="benefit-icon"><i class="fas fa-briefcase"></i></div>
+                    <h3>Expérience Professionnelle</h3>
+                    <p>Développez des compétences en communication, négociation et marketing immobilier, un vrai plus sur votre CV.</p>
+                </div>
+                <div class="benefit-item">
+                    <div class="benefit-icon"><i class="fas fa-network-wired"></i></div>
+                    <h3>Développez votre Réseau</h3>
+                    <p>Construisez un réseau de contacts professionnels qui vous sera utile pour votre future carrière.</p>
+                </div>
+            </div>
+            <a href="agent.html" class="cta-button-green">Postuler pour devenir Agent</a>
+        </section>
+
+        <section class="listings-section" style="padding: 60px 40px; background-color: #fff;">
+            <h2 class="section-title">Nos Offres de Colocation et Studios</h2>
+            <div class="listings-container" id="listings-container">
+                <!-- Les annonces seront chargées ici par etudiants.js -->
+                <p class="page-intro">Chargement des offres...</p>
+            </div>
+        </section>
+    </main>
+
+    <footer class="main-footer">
+        <div class="footer-content">
+            <div class="footer-section about">
+                <h4>À Propos de Nous</h4>
+                <p>Votre partenaire de confiance pour trouver la maison de vos rêves. Nous offrons un service personnalisé pour l'achat, la vente et la location de biens immobiliers.</p>
+            </div>
+            <div class="footer-section links">
+                <h4>Liens Rapides</h4>
+                <ul>
+                    <li><a href="index.html">Accueil</a></li>
+                    <li><a href="a-vendre.html">À Vendre</a></li>
+                    <li><a href="louyer.html">À Louer</a></li>
+                    <li><a href="colocation.html">Colocation</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="service.html">Service</a></li>
+                </ul>
+            </div>
+            <div class="footer-section contact-social">
+                <h4>Contact & Réseaux</h4>
+                <ul class="contact-info">
+                    <li>Email: contact@logement.com</li>
+                    <li>Téléphone: +224 620 00 00 00</li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            &copy; 2024 Projet Logement | Tous droits réservés
+        </div>
+    </footer>
+
+    <script src="auth.js"></script>
+    <script src="main.js"></script>
+    <script src="etudiants.js"></script>
+</body>
+</html>
