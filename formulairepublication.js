@@ -25,7 +25,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const formData = new FormData(form);
 
         try {
-            const response = await fetch('http://localhost:3000/api/properties/submit-annonce', {
+            const response = await fetch('/api/properties/submit-annonce', {
                 method: 'POST',
                 headers: {
                     // Ne PAS définir 'Content-Type'. Le navigateur le fera pour vous.

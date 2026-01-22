@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const formattedPrice = new Intl.NumberFormat('fr-FR').format(property.prix);
         const priceSuffix = property.type === 'Vente' ? '' : '<span>/ mois</span>';
         const imageUrl = property.photos && property.photos.length > 0
-            ? `http://localhost:3000/${property.photos[0]}`
+            ? `/${property.photos[0]}`
             : 'https://via.placeholder.com/400x250/cccccc/808080?text=Image+non+disponible';
 
         card.innerHTML = `
@@ -28,7 +28,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!listingsContainer) return;
         try {
             // On cible principalement les colocations pour les étudiants
-            const response = await fetch('http://localhost:3000/api/properties?type=Colocation');
+            const response = await fetch('/api/properties?type=Colocation');
             const result = await response.json();
 
             listingsContainer.innerHTML = ''; // Vider le message de chargement

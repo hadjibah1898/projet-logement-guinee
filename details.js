@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const fetchPropertyDetails = async () => {
         try {
-            const response = await fetch(`http://localhost:3000/api/properties/${propertyId}`);
+            const response = await fetch(`/api/properties/${propertyId}`);
             const result = await response.json();
 
             if (!response.ok || !result.success) {
@@ -39,7 +39,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const displayPropertyDetails = (property) => {
         const formattedPrice = new Intl.NumberFormat('fr-FR').format(property.prix);
         const priceSuffix = property.type === 'Vente' ? '' : '<span>/ mois</span>';
-        const imageBaseUrl = 'http://localhost:3000/';
+        const imageBaseUrl = '/';
 
         let slidesHTML = '';
         if (property.photos && property.photos.length > 0) {

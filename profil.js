@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const initializeProfile = async () => {
         try {
             // 1. Récupérer les données utilisateur à jour depuis le serveur pour plus de fiabilité
-            const userResponse = await fetch('http://localhost:3000/api/users/me', {
+            const userResponse = await fetch('/api/users/me', {
                 headers: { 'Authorization': `Bearer ${token}` }
             });
 
@@ -124,7 +124,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const fetchMyListings = async () => {
         try {
             listingsContainer.innerHTML = '<p>Chargement de vos annonces...</p>';
-            const response = await fetch('http://localhost:3000/api/properties/my-listings', {
+            const response = await fetch('/api/properties/my-listings', {
                 headers: {
                     'Authorization': `Bearer ${token}`
                 }
@@ -157,7 +157,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const formattedPrice = new Intl.NumberFormat('fr-FR').format(property.prix);
         const priceSuffix = property.type === 'Vente' ? '' : '<span>/ mois</span>';
         const imageUrl = property.photos && property.photos.length > 0
-            ? `http://localhost:3000/${property.photos[0]}`
+            ? `/${property.photos[0]}`
             : 'https://via.placeholder.com/400x250/cccccc/808080?text=Image+non+disponible';
 
 
@@ -183,7 +183,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         try {
             favoritesContainer.innerHTML = '<p>Chargement de vos favoris...</p>';
-            const response = await fetch('http://localhost:3000/api/users/favorites', {
+            const response = await fetch('/api/users/favorites', {
                 headers: { 'Authorization': `Bearer ${token}` }
             });
             const result = await response.json();
@@ -235,7 +235,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
 
             try {
-                const response = await fetch(`http://localhost:3000/api/properties/${propertyId}`, {
+                const response = await fetch(`/api/properties/${propertyId}`, {
                     method: 'DELETE',
                     headers: { 'Authorization': `Bearer ${token}` }
                 });
@@ -313,7 +313,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
 
             try {
-                const response = await fetch('http://localhost:3000/api/users/change-password', {
+                const response = await fetch('/api/users/change-password', {
                     method: 'PUT',
                     headers: {
                         'Content-Type': 'application/json',
