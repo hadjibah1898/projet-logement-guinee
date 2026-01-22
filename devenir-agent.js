@@ -24,7 +24,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const data = Object.fromEntries(formData.entries());
 
         try {
-            const response = await fetch('http://localhost:3000/api/users/become-agent', {
+            const response = await fetch('/api/users/become-agent', {
                 method: 'PUT',
                 headers: {
                     'Authorization': `Bearer ${token}`,

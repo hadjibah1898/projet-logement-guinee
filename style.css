@@ -1600,6 +1600,105 @@ body {
     transform: translateY(0);
 }
 
+/* =====================
+   Responsive overrides
+   ===================== */
+
+@media (max-width: 1024px) {
+    .main-header { padding: 10px 20px; }
+    .main-header .logo img { height: 70px; }
+    .hero-content { max-width: 700px; }
+    .featured-listings { padding: 40px 20px; }
+}
+
+@media (max-width: 850px) {
+    .main-header { padding: 8px 16px; align-items: center; }
+    .nav-toggle { display: block; }
+    .header-actions { gap: 10px; }
+    .main-nav { order: 4; }
+    .main-nav ul { top: 60px; }
+    .hero { height: auto; padding: 60px 20px; align-items: flex-start; }
+    .hero-content h1 { font-size: clamp(1.6rem, 5vw, 2.6rem); }
+    .hero-content p { font-size: clamp(1rem, 3vw, 1.2rem); }
+    .advanced-search-form { flex-direction: column; align-items: stretch; }
+    .advanced-search-form .form-group { flex: 1 1 100%; }
+    .search-btn { width: 100%; flex-basis: auto; order: 99; height: auto; padding: 12px; }
+    .min-max-inputs { flex-direction: row; }
+}
+
+@media (max-width: 600px) {
+    .main-header .logo img { height: 60px; }
+    .footer-content { padding: 20px; flex-direction: column; align-items: stretch; }
+    .listings-container { padding: 0 20px 40px 20px; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); }
+    .property-card img { height: 160px; }
+    .students-incentives .container { flex-direction: column-reverse; }
+    .testimonial-card { flex: 1 1 100%; }
+    .profile-content-grid { grid-template-columns: 1fr; padding: 0 10px; }
+}
+
+@media (max-width: 480px) {
+    .hero-content h1 { font-size: 1.6rem; }
+    .hero-content p { font-size: 1rem; }
+    .main-header .logo img { height: 48px; }
+    .nav-menu a { padding: 12px !important; }
+    .search-btn { font-size: 1rem; padding: 10px; }
+    .property-card { margin: 0; }
+}
+
+/* --- Improvements for Students section and margins --- */
+.students-incentives .container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 20px;
+    gap: 24px;
+    align-items: center;
+}
+
+.students-incentives .text-content {
+    flex: 1 1 60%;
+    min-width: 260px;
+}
+
+.students-incentives .text-content .section-title {
+    font-size: clamp(1.4rem, 4vw, 2rem);
+    margin-bottom: 12px;
+    text-align: left; /* override inline style if present */
+}
+
+.students-incentives .image-content {
+    flex: 1 1 40%;
+    min-width: 200px;
+    text-align: center;
+}
+
+.students-incentives img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+    border-radius: 8px;
+}
+
+/* Tighter spacing on smaller screens */
+@media (max-width: 850px) {
+    .students-incentives .container {
+        flex-direction: column-reverse;
+        padding: 16px;
+        gap: 12px;
+        text-align: center;
+    }
+    .students-incentives .text-content { text-align: center; }
+    .students-incentives .image-content { width: 100%; }
+    .students-incentives img { max-width: 85%; }
+}
+
+/* Slightly reduce global horizontal paddings for very small viewports */
+@media (max-width: 480px) {
+    .students-incentives .container { padding: 12px; }
+    .listings-container { padding-left: 12px; padding-right: 12px; }
+}
+
+
 .modal-close {
     position: absolute;
     top: 10px;

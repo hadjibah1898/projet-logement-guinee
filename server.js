@@ -7,6 +7,12 @@ const path = require('path');
 
 dotenv.config(); // Load environment variables from .env file
 
+// Vérification de sécurité : s'assurer que JWT_SECRET est défini
+if (!process.env.JWT_SECRET) {
+    console.error("ERREUR FATALE : La variable JWT_SECRET n'est pas définie dans le fichier .env");
+    process.exit(1);
+}
+
 // Import routes
 const contactRoutes = require('./contacts.js');
 const propertiesRoutes = require('./properties.js');
