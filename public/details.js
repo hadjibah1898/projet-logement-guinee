@@ -1,4 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
+    const API_URL = window.location.port === '5500' ? 'http://localhost:3000' : '';
     const detailsContainer = document.getElementById('details-container');
     const params = new URLSearchParams(window.location.search);
     const propertyId = params.get('id');
@@ -20,7 +21,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const fetchPropertyDetails = async () => {
         try {
-            const response = await fetch(`/api/properties/${propertyId}`);
+            const response = await fetch(`${API_URL}/properties/${propertyId}`);
             const result = await response.json();
 
             if (!response.ok || !result.success) {
@@ -39,7 +40,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const displayPropertyDetails = (property) => {
         const formattedPrice = new Intl.NumberFormat('fr-FR').format(property.prix);
         const priceSuffix = property.type === 'Vente' ? '' : '<span>/ mois</span>';
-        const imageBaseUrl = '/';
+        const imageBaseUrl = API_URL + '/';
 
         let slidesHTML = '';
         if (property.photos && property.photos.length > 0) {

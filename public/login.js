@@ -1,5 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const API_URL = 'http://localhost:3000';
+    // Si on est sur le port 5500 (Live Server), on pointe vers le backend sur le port 3000
+    const API_URL = window.location.port === '5500' ? 'http://localhost:3000' : '';
     const loginForm = document.getElementById('login-form');
     const messageContainer = document.getElementById('message-container');
 
@@ -32,7 +33,14 @@ document.addEventListener('DOMContentLoaded', () => {
                 body: JSON.stringify(data)
             });
 
-            const result = await response.json();
+            let result;
+            try {
+                result = await response.json();
+            } catch (e) {
+                // Si le serveur renvoie du HTML (ex: erreur 404/500/405) au lieu du JSON
+                console.error("Réponse non-JSON reçue du serveur", e);
+                throw new Error("Erreur de communication avec le serveur. Vérifiez que vous accédez bien au site via http://localhost:3000");
+            }
 
             if (response.ok && result.success) {
                 // Stocker le token et les infos utilisateur

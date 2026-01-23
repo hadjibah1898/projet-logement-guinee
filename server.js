@@ -29,12 +29,12 @@ app.use(morgan('dev')); // HTTP request logging
 // Servir les fichiers statiques du dossier 'uploads'
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
-// Servir les fichiers statiques de la racine (CSS, JS, Images, HTML)
-app.use(express.static(path.join(__dirname)));
+// Servir les fichiers statiques du dossier 'public'
+app.use(express.static(path.join(__dirname, 'public')));
 
 // Route racine : Renvoyer la page d'accueil (index.html)
 app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, 'index.html'));
+  res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
 // Use routes without API prefixes

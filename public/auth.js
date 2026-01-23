@@ -1,5 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const API_URL = 'http://localhost:3000';
+    // Si on est sur le port 5500 (Live Server), on pointe vers le backend sur le port 3000
+    const API_URL = window.location.port === '5500' ? 'http://localhost:3000' : '';
     const headerActions = document.querySelector('.header-actions');
     const token = localStorage.getItem('token');
 

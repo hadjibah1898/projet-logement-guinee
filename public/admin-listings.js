@@ -1,4 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
+    const API_URL = window.location.port === '5500' ? 'http://localhost:3000' : '';
     const listingsContainer = document.getElementById('listings-to-review');
     const messageContainer = document.getElementById('admin-message-container');
     const token = localStorage.getItem('token');
@@ -33,7 +34,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // 2. Charger les annonces en attente depuis l'API
     async function loadPendingListings() {
         try {
-            const response = await fetch('/properties/pending', {
+            const response = await fetch(`${API_URL}/properties/pending`, {
                 headers: { 'Authorization': `Bearer ${token}` }
             });
             const result = await response.json();
@@ -87,7 +88,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const listingId = button.dataset.id;
         const action = button.classList.contains('approve') ? 'approve' : 'reject';
-        const url = `/api/properties/${listingId}/status`;
+        const url = `${API_URL}/properties/${listingId}/status`;
 
         button.disabled = true;
         button.textContent = '...';
@@ -96,7 +97,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const response = await fetch(url, {
                 method: 'PUT',
                 headers: { 'Authorization': `Bearer ${token}`, 'Content-Type': 'application/json' },
-                body: JSON.stringify({ status: action === 'approve' ? 'approuvée' : 'rejetée' })
+                body: JSON.stringify({ status: action === 'approve' ? 'approved' : 'rejected' })
             });
             const result = await response.json();
 

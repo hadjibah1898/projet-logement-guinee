@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const API_URL = 'http://localhost:3000';
+    const API_URL = window.location.port === '5500' ? 'http://localhost:3000' : '';
     const token = localStorage.getItem('token');
     // Si l'utilisateur n'est pas connecté, le rediriger vers la page de connexion.
     // On ajoute un paramètre pour le rediriger ici après la connexion.

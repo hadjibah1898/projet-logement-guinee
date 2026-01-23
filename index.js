@@ -11,8 +11,11 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-// Servir les fichiers statiques (HTML, CSS, JS, Images) du dossier racine
-app.use(express.static(path.join(__dirname)));
+// Servir les fichiers statiques du dossier 'uploads' (si présents)
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+
+// Servir les fichiers statiques du dossier 'public'
+app.use(express.static(path.join(__dirname, 'public')));
 
 // Connexion à MongoDB
 // Note : La connexion doit être gérée efficacement pour le serverless
@@ -25,11 +28,6 @@ if (mongoose.connection.readyState === 0) {
         console.warn("Attention: MONGODB_URI n'est pas défini dans les variables d'environnement !");
     }
 }
-
-// Route racine : Renvoyer la page d'accueil (index.html) au lieu du message texte
-app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, 'index.html'));
-});
 
 // Utilisation des routes
 app.use('/users', users);

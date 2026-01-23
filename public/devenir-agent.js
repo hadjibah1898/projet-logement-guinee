@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const API_URL = 'http://localhost:3000';
+    const API_URL = window.location.port === '5500' ? 'http://localhost:3000' : '';
     const token = localStorage.getItem('token');
     if (!token) {
         // Rediriger vers la page de connexion, puis revenir ici après la connexion.
@@ -25,7 +25,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const data = Object.fromEntries(formData.entries());
 
         try {
-            const response = await fetch(`${API_URL}/api/users/become-agent`, {
+            const response = await fetch(`${API_URL}/users/become-agent`, {
                 method: 'PUT',
                 headers: {
                     'Authorization': `Bearer ${token}`,
