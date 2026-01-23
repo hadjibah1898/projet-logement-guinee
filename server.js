@@ -16,7 +16,7 @@ if (!process.env.JWT_SECRET) {
 // Import routes
 const contactRoutes = require('./contacts.js');
 const propertiesRoutes = require('./properties.js');
-const usersRoutes = require('./users.js');
+const usersRoutes = require('./userRoutes.js');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -34,10 +34,10 @@ app.get('/', (req, res) => {
   res.send('Hello World! The server is running.');
 });
 
-// Use routes with API prefixes
-app.use('/api/contacts', contactRoutes);
-app.use('/api/properties', propertiesRoutes);
-app.use('/api/users', usersRoutes);
+// Use routes without API prefixes
+app.use('/contacts', contactRoutes);
+app.use('/properties', propertiesRoutes);
+app.use('/users', usersRoutes);
 
 // Connect to MongoDB and then start the server
 mongoose.connect(process.env.MONGODB_URI)

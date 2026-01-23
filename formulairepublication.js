@@ -1,4 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
+    const API_URL = 'http://localhost:3000';
     const token = localStorage.getItem('token');
     // Si l'utilisateur n'est pas connecté, le rediriger vers la page de connexion.
     // On ajoute un paramètre pour le rediriger ici après la connexion.
@@ -25,7 +26,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const formData = new FormData(form);
 
         try {
-            const response = await fetch('/api/properties/submit-annonce', {
+            const response = await fetch(`${API_URL}/properties/submit-annonce`, {
                 method: 'POST',
                 headers: {
                     // Ne PAS définir 'Content-Type'. Le navigateur le fera pour vous.

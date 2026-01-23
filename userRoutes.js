@@ -3,7 +3,7 @@ const router = express.Router();
 const jwt = require('jsonwebtoken');
 const { body, validationResult } = require('express-validator');
 const authMiddleware = require('./authMiddleware'); // Assumant que ce middleware existe
-const User = require('./User');
+const User = require('./userModel');
 
 
 // Route pour l'inscription (POST /api/users/register)

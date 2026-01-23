@@ -1,4 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
+    const API_URL = 'http://localhost:3000';
     const token = localStorage.getItem('token');
     if (!token) {
         window.location.href = 'connexion.html?redirect=profil.html';
@@ -14,7 +15,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const initializeProfile = async () => {
         try {
             // 1. Récupérer les données utilisateur à jour depuis le serveur pour plus de fiabilité
-            const userResponse = await fetch('/api/users/me', {
+            const userResponse = await fetch(`${API_URL}/users/me`, {
                 headers: { 'Authorization': `Bearer ${token}` }
             });
 
@@ -124,7 +125,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const fetchMyListings = async () => {
         try {
             listingsContainer.innerHTML = '<p>Chargement de vos annonces...</p>';
-            const response = await fetch('/api/properties/my-listings', {
+            const response = await fetch(`${API_URL}/properties/my-listings`, {
                 headers: {
                     'Authorization': `Bearer ${token}`
                 }
@@ -157,7 +158,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const formattedPrice = new Intl.NumberFormat('fr-FR').format(property.prix);
         const priceSuffix = property.type === 'Vente' ? '' : '<span>/ mois</span>';
         const imageUrl = property.photos && property.photos.length > 0
-            ? `/${property.photos[0]}`
+            ? `${API_URL}/${property.photos[0]}`
             : 'https://via.placeholder.com/400x250/cccccc/808080?text=Image+non+disponible';
 
 
@@ -183,7 +184,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         try {
             favoritesContainer.innerHTML = '<p>Chargement de vos favoris...</p>';
-            const response = await fetch('/api/users/favorites', {
+            const response = await fetch(`${API_URL}/users/favorites`, {
                 headers: { 'Authorization': `Bearer ${token}` }
             });
             const result = await response.json();
@@ -235,7 +236,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
 
             try {
-                const response = await fetch(`/api/properties/${propertyId}`, {
+                const response = await fetch(`${API_URL}/properties/${propertyId}`, {
                     method: 'DELETE',
                     headers: { 'Authorization': `Bearer ${token}` }
                 });
@@ -313,7 +314,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
 
             try {
-                const response = await fetch('/api/users/change-password', {
+                const response = await fetch(`${API_URL}/users/change-password`, {
                     method: 'PUT',
                     headers: {
                         'Content-Type': 'application/json',

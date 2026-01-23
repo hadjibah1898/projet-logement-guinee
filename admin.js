@@ -28,7 +28,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // 2. Récupérer les demandes en attente
     const fetchApplications = async () => {
         try {
-            const response = await fetch('/api/users/agent-applications', {
+            const response = await fetch('/users/agent-applications', {
                 headers: { 'Authorization': `Bearer ${token}` }
             });
 
@@ -90,7 +90,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const userId = button.dataset.id;
         const action = button.classList.contains('approve') ? 'approve' : 'reject';
-        const url = `/api/users/${action}-agent/${userId}`;
+        const url = `/users/${action}-agent/${userId}`;
 
         button.disabled = true;
         button.textContent = '...';

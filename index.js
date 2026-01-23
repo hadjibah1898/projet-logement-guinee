@@ -1,9 +1,13 @@
 const express = require('express');
 const mongoose = require('mongoose');
-const users = require('../users');
+const cors = require('cors');
+const users = require('./userRoutes');
+const contacts = require('./contacts');
+const properties = require('./properties');
 
 const app = express();
 
+app.use(cors());
 app.use(express.json());
 
 // Connexion à MongoDB
@@ -18,7 +22,9 @@ if (mongoose.connection.readyState === 0) {
     }
 }
 
-// Utilisation des routes définies dans users.js
-app.use('/api/users', users);
+// Utilisation des routes
+app.use('/users', users);
+app.use('/contacts', contacts);
+app.use('/properties', properties);
 
 module.exports = app;

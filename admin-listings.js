@@ -33,7 +33,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // 2. Charger les annonces en attente depuis l'API
     async function loadPendingListings() {
         try {
-            const response = await fetch('/api/properties/pending', {
+            const response = await fetch('/properties/pending', {
                 headers: { 'Authorization': `Bearer ${token}` }
             });
             const result = await response.json();

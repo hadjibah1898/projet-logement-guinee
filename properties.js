@@ -2,12 +2,22 @@ const express = require('express');
 const router = express.Router();
 const { body, validationResult } = require('express-validator');
 const authMiddleware = require('./authMiddleware');
+const optionalAuthMiddleware = require('./optionalAuthMiddleware'); // Importer le nouveau middleware
 const Property = require('./models/Property');
 const fs = require('fs');
 const path = require('path');
 const multer = require('multer');
 
-// Configuration de Multer pour le stockage des images
+// Middleware simple pour vérifier si l'utilisateur est un admin
+// (Idéalement, ce middleware devrait être dans un fichier partagé)
+const adminMiddleware = (req, res, next) => {
+    if (req.user && req.user.role === 'admin') {
+        next();
+    } else {
+        res.status(403).json({ success: false, message: 'Accès refusé. Droits administrateur requis.' });
+    }
+};
+
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
         const uploadDir = 'uploads/';
@@ -96,7 +106,8 @@ router.post('/submit-annonce', [
 router.get('/', async (req, res) => {
     try {
         const { type, limit, ville, prix_min, prix_max, surface_min, surface_max } = req.query;
-        const filter = {};
+        // Par défaut, on ne montre que les annonces approuvées au public
+        const filter = { status: 'approved' };
 
         if (type) {
             filter.type = type;
@@ -133,6 +144,50 @@ router.get('/', async (req, res) => {
     }
 });
 
+// --- ROUTES ADMINISTRATEUR POUR LA GESTION DES ANNONCES ---
+
+// Route pour récupérer les annonces en attente de validation
+router.get('/pending', authMiddleware, adminMiddleware, async (req, res) => {
+    try {
+        const properties = await Property.find({ status: 'pending' })
+            .populate('auteur', 'fullname email')
+            .sort({ createdAt: -1 });
+        res.json({ success: true, properties });
+    } catch (error) {
+        console.error("Erreur lors de la récupération des annonces en attente :", error);
+        res.status(500).json({ success: false, message: 'Erreur du serveur.' });
+    }
+});
+
+// Route pour approuver ou rejeter une annonce
+router.put('/:id/status', [
+    authMiddleware,
+    adminMiddleware,
+    body('status').isIn(['approved', 'rejected']).withMessage('Le statut est invalide.')
+], async (req, res) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+        return res.status(400).json({ success: false, message: errors.array().map(e => e.msg).join(' ') });
+    }
+
+    try {
+        const { status } = req.body;
+        const propertyToUpdate = await Property.findById(req.params.id);
+
+        if (!propertyToUpdate) {
+            return res.status(404).json({ success: false, message: 'Annonce non trouvée.' });
+        }
+
+        propertyToUpdate.status = status;
+        await propertyToUpdate.save();
+
+        res.json({ success: true, message: `Annonce ${status === 'approved' ? 'approuvée' : 'rejetée'} avec succès.` });
+    } catch (error) {
+        console.error("Erreur lors de la mise à jour du statut de l'annonce :", error);
+        res.status(500).json({ success: false, message: 'Erreur du serveur.' });
+    }
+});
+
 // Route pour récupérer les annonces de l'utilisateur connecté
 router.get('/my-listings', authMiddleware, async (req, res) => {
     try {
@@ -145,12 +200,20 @@ router.get('/my-listings', authMiddleware, async (req, res) => {
 });
 
 // Route pour récupérer une annonce par son ID
-router.get('/:id', async (req, res) => {
+router.get('/:id', optionalAuthMiddleware, async (req, res) => {
     try {
-        // Utilise .populate() pour récupérer les infos de l'auteur liées à l'annonce
         const property = await Property.findById(req.params.id).populate('auteur', 'fullname email');
 
         if (!property) {
+            return res.status(404).json({ success: false, message: 'Annonce non trouvée' });
+        }
+
+        const isAuthor = req.user && property.auteur && property.auteur._id.toString() === req.user.id;
+        const isAdmin = req.user && req.user.role === 'admin';
+
+        // Si l'annonce n'est pas approuvée, seuls son auteur et un admin peuvent la voir
+        if (property.status !== 'approved' && !isAuthor && !isAdmin) {
+            // On renvoie une 404 pour ne pas révéler l'existence d'une annonce non validée
             return res.status(404).json({ success: false, message: 'Annonce non trouvée' });
         }
 
@@ -238,6 +301,4 @@ router.delete('/:id', authMiddleware, async (req, res) => {
     }
 });
 
-
-// Exporter le routeur pour l'utiliser dans l'application principale
 module.exports = router;

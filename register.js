@@ -1,4 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
+    const API_URL = 'http://localhost:3000';
     const form = document.getElementById('register-form');
     if (!form) return; // Ne rien faire si le formulaire n'est pas sur la page
 
@@ -44,7 +45,7 @@ document.addEventListener('DOMContentLoaded', () => {
         delete data.confirm_password; // Bonne pratique : ne pas envoyer le mot de passe de confirmation
 
         try {
-            const response = await fetch('/api/users/register', {
+            const response = await fetch(`${API_URL}/users/register`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(data)
