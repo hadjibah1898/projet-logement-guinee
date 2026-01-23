@@ -1,6 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
+const path = require('path');
 const users = require('./userRoutes');
 const contacts = require('./contacts');
 const properties = require('./properties');
@@ -9,6 +10,9 @@ const app = express();
 
 app.use(cors());
 app.use(express.json());
+
+// Servir les fichiers statiques (HTML, CSS, JS, Images) du dossier racine
+app.use(express.static(path.join(__dirname)));
 
 // Connexion à MongoDB
 // Note : La connexion doit être gérée efficacement pour le serverless
@@ -22,9 +26,9 @@ if (mongoose.connection.readyState === 0) {
     }
 }
 
-// Route racine pour vérifier le fonctionnement de l'API sur Vercel
+// Route racine : Renvoyer la page d'accueil (index.html) au lieu du message texte
 app.get('/', (req, res) => {
-    res.send('Bienvenue sur l\'API Projet Logement Guinée. Le serveur est en ligne !');
+    res.sendFile(path.join(__dirname, 'index.html'));
 });
 
 // Utilisation des routes
