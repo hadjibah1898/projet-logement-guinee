@@ -22,6 +22,11 @@ if (mongoose.connection.readyState === 0) {
     }
 }
 
+// Route racine pour vérifier le fonctionnement de l'API sur Vercel
+app.get('/', (req, res) => {
+    res.send('Bienvenue sur l\'API Projet Logement Guinée. Le serveur est en ligne !');
+});
+
 // Utilisation des routes
 app.use('/users', users);
 app.use('/contacts', contacts);
