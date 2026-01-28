@@ -208,8 +208,8 @@
             <div class="gallery-slide">
                 <img src="image/WhatsApp Image 2025-07-26 à 21.15.10_2ba54412.jpg" alt="Salle de bain avec douche à l'italienne">
             </div>
-            <a class="slider-arrow prev-slide">&#10094;</a>
-            <a class="slider-arrow next-slide">&#10095;</a>
+            <button type="button" class="slider-arrow prev-slide">&#10094;</button>
+            <button type="button" class="slider-arrow next-slide">&#10095;</button>
             <div class="slide-counter">1 / 5</div>
         </section>
 
@@ -247,8 +247,9 @@
             <aside class="contact-agent-card">
                 <h3>Contacter l'agent</h3>
                 <p>Intéressé par ce bien ? Contactez-nous pour planifier une visite.</p>
-                <form action="/contact-agent-handler" method="POST">
-                    <input type="hidden" name="property_id" value="L001">
+                <div id="contact-message" style="margin-bottom: 10px; font-weight: bold;"></div>
+                <form id="static-contact-form">
+                    <input type="hidden" name="subject" value="Intéressé par : Appartement lumineux en centre-ville (Réf: L001)">
                     <div class="form-group" style="margin-bottom: 10px;">
                         <input type="text" name="name" placeholder="Votre nom" required style="width: 100%; padding: 8px;">
                     </div>
@@ -305,6 +306,7 @@
     <script src="main.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
+            // --- Logique du Slider ---
             const slides = document.querySelectorAll('.gallery-slide');
             const prevBtn = document.querySelector('.prev-slide');
             const nextBtn = document.querySelector('.next-slide');
@@ -333,6 +335,48 @@
 
             // Afficher la première image au chargement
             showSlide(currentSlide);
+
+            // --- Logique du Formulaire de Contact ---
+            const contactForm = document.getElementById('static-contact-form');
+            const messageDiv = document.getElementById('contact-message');
+            const API_URL = window.location.port === '5500' ? 'http://localhost:3000' : '';
+
+            if (contactForm) {
+                contactForm.addEventListener('submit', async (e) => {
+                    e.preventDefault();
+                    const submitBtn = contactForm.querySelector('button[type="submit"]');
+                    submitBtn.disabled = true;
+                    submitBtn.textContent = 'Envoi...';
+                    messageDiv.textContent = '';
+
+                    const formData = new FormData(contactForm);
+                    const data = Object.fromEntries(formData.entries());
+
+                    try {
+                        const response = await fetch(`${API_URL}/contacts`, {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify(data)
+                        });
+                        const result = await response.json();
+
+                        if (response.ok && result.success) {
+                            messageDiv.textContent = 'Message envoyé avec succès !';
+                            messageDiv.style.color = 'green';
+                            contactForm.reset();
+                        } else {
+                            throw new Error(result.message || 'Erreur lors de l\'envoi.');
+                        }
+                    } catch (error) {
+                        console.error(error);
+                        messageDiv.textContent = 'Erreur : ' + error.message;
+                        messageDiv.style.color = 'red';
+                    } finally {
+                        submitBtn.disabled = false;
+                        submitBtn.textContent = 'Envoyer';
+                    }
+                });
+            }
         });
     </script>
 </body>

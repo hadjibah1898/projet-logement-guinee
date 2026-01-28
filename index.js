@@ -21,9 +21,11 @@ app.use(express.static(path.join(__dirname, 'public')));
 // Note : La connexion doit être gérée efficacement pour le serverless
 if (mongoose.connection.readyState === 0) {
     if (process.env.MONGODB_URI) {
-        mongoose.connect(process.env.MONGODB_URI)
+        mongoose.connect(process.env.MONGODB_URI, {
+            serverSelectionTimeoutMS: 5000 // Timeout après 5s au lieu de 30s par défaut pour éviter que les serverless functions ne pendent
+        })
             .then(() => console.log("MongoDB connecté via Vercel"))
-            .catch(err => console.error("Erreur connexion MongoDB:", err));
+            .catch(err => console.error("Erreur connexion MongoDB:", err.message));
     } else {
         console.warn("Attention: MONGODB_URI n'est pas défini dans les variables d'environnement !");
     }

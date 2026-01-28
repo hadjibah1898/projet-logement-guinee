@@ -5,10 +5,10 @@ const Contact = require('./models/Contact');
 const sendEmail = require('./emailService');
 
 router.post('/', [
-    body('name').notEmpty().withMessage('Le nom est obligatoire.'),
-    body('email').isEmail().withMessage('Veuillez fournir une adresse email valide.'),
-    body('subject').notEmpty().withMessage('Le sujet est obligatoire.'),
-    body('message').notEmpty().withMessage('Le message est obligatoire.')
+    body('name').trim().notEmpty().withMessage('Le nom est obligatoire.').escape(),
+    body('email').trim().isEmail().withMessage('Veuillez fournir une adresse email valide.').normalizeEmail(),
+    body('subject').trim().notEmpty().withMessage('Le sujet est obligatoire.').escape(),
+    body('message').trim().notEmpty().withMessage('Le message est obligatoire.') // Note: escape() ici peut casser le formatage si vous voulez garder les sauts de ligne, mais c'est plus sûr.
 ], async (req, res) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {

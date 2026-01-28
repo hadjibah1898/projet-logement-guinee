@@ -23,6 +23,9 @@ module.exports = function(req, res, next) {
         req.user = decoded.user; // Ajouter les infos de l'utilisateur à l'objet `req`
         next();
     } catch (err) {
+        if (err.name === 'TokenExpiredError') {
+            return res.status(401).json({ success: false, message: 'Session expirée, veuillez vous reconnecter.', code: 'TOKEN_EXPIRED' });
+        }
         res.status(401).json({ success: false, message: 'Token invalide.' });
     }
 };
